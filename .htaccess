@@ -1,0 +1,28 @@
+# Documentação: https://httpd.apache.org/docs/2.4/rewrite/flags.html
+# Ativa o Módulo Rewrite, que faz a erescrita de URL
+RewriteEngine On
+
+# RewriteCond: Define uma condição para uma regra.
+# REQUEST_FILENAME é o caminho completo do diretóio que atende ao request original tomando por base o filesystem da maquina, e não relativo a hospedagem.
+# RewriteCond %{REQUEST_FILENAME} !-d Informa que será criado uma condiçõa a ser aplicado ao nome do diretório requisitado. A exclamaçao é o sinal de negação e -d pede paa verificar a existencia de um diretório físico. Ex: CONDICÃO = SE ARQUIVO_REQUISITADO NÃO EXISTE COMO DIRETÓRIO FISICAMENTE
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# RewriteCond %{REQUEST_FILENAME} !-f Informa que será criado uma condiçõa a ser aplicado ao nome do arquivo requisitado. A exclamaçao é o sinal de negação e -f pede paa verificar a existencia de um arquivo físico. Ex: CONDICÃO = SE ARQUIVO_REQUISITADO NÃO EXISTE COMO DIRETÓRIO FISICAMENTE
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# RewriteCond %{REQUEST_FILENAME} !-l Informa que será criado uma condiçõa a ser aplicado ao link simbólico requisitado. A exclamaçao é o sinal de negação e -l pede paa verificar a existencia de um link simbólico.
+RewriteCond %{REQUEST_FILENAME} !-l
+
+#RewriteRule: Faz a Reescrita da URL
+# Cicunflexo Indica o Inicio e Cifrão Indica o Fim
+# (.+) Pegue todo o conteudo da URL
+# index.php?params=$1 infica para substiruir a requisição, redirecionando o fluxo para index.php e colocando-a inteiramente como um parametro.
+# Exemplo: index.php?url=blog/index
+# QSA Sifnifica que se houver uma string de consulta passada com a URL original, ela será anexada á reescrita
+# Exemplo: blog?situacao=1 será reescrita como index.php?url=blog&p=situacao
+# O sinalizador [L] faz mod_rewrite com que o processamento do conjunto de regras seja interrompido
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+#Tudo que estiver depois do meu diretorio atual "index.php", vai ser atribuido na variavel URL. Caso minha index estivesse dentro de outro diretorio eu teria que especificarr o caminho certinho
+
+# Se voce deseja capturar apenas URLs que contenham pelo menos um caractere, use "+" (^(.+)$). Se voce deseja capturar todas as URLs incluindo as que estejam vazias, use "" (^(.*)$).
