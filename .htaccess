@@ -1,28 +1,47 @@
-# Documentação: https://httpd.apache.org/docs/2.4/rewrite/flags.html
-# Ativa o Módulo Rewrite, que faz a erescrita de URL
+# Ativa a reescrita de URLs
 RewriteEngine On
+RewriteBase /MVC/
 
-# RewriteCond: Define uma condição para uma regra.
-# REQUEST_FILENAME é o caminho completo do diretóio que atende ao request original tomando por base o filesystem da maquina, e não relativo a hospedagem.
-# RewriteCond %{REQUEST_FILENAME} !-d Informa que será criado uma condiçõa a ser aplicado ao nome do diretório requisitado. A exclamaçao é o sinal de negação e -d pede paa verificar a existencia de um diretório físico. Ex: CONDICÃO = SE ARQUIVO_REQUISITADO NÃO EXISTE COMO DIRETÓRIO FISICAMENTE
+# Bloqueia listagem de diretórios
+Options -Indexes
+
+# Redireciona erro 403 para página personalizada
+ErrorDocument 403 http://localhost/mvc/error403
+
+######################
+# BLOQUEIOS DE ACESSO
+######################
+
+# BLOQUEAR ACESSO DIRETO A DIRETÓRIOS SENSÍVEIS
+# (app, vendor, logs, etc.)
+
+RewriteCond %{REQUEST_URI} (^|/)app/ [NC]
+RewriteRule ^ - [F]
+
+RewriteCond %{REQUEST_URI} (^|/)vendor/ [NC]
+RewriteRule ^ - [F]
+
+RewriteCond %{REQUEST_URI} (^|/)logs/ [NC]
+RewriteRule ^ - [F]
+
+# (Exemplo de exceção: para liberar controllers/errors, adicione isso acima do bloqueio de /app/)
+# RewriteCond %{REQUEST_URI} ^/MVC/app/controllers/errors [NC]
+# RewriteRule ^ - [L]
+
+##########################
+# BLOQUEIO DE ARQUIVOS SENSÍVEIS
+##########################
+
+<FilesMatch "^(\.htaccess|\.gitignore|composer\.(json|lock)|README\.md|LICENSE)$">
+    Require all denied
+</FilesMatch>
+
+##########################
+# URL AMIGÁVEL MVC
+##########################
+
+# Se o arquivo ou diretório não existir, redireciona para index.php
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# RewriteCond %{REQUEST_FILENAME} !-f Informa que será criado uma condiçõa a ser aplicado ao nome do arquivo requisitado. A exclamaçao é o sinal de negação e -f pede paa verificar a existencia de um arquivo físico. Ex: CONDICÃO = SE ARQUIVO_REQUISITADO NÃO EXISTE COMO DIRETÓRIO FISICAMENTE
 RewriteCond %{REQUEST_FILENAME} !-f
-
-# RewriteCond %{REQUEST_FILENAME} !-l Informa que será criado uma condiçõa a ser aplicado ao link simbólico requisitado. A exclamaçao é o sinal de negação e -l pede paa verificar a existencia de um link simbólico.
 RewriteCond %{REQUEST_FILENAME} !-l
-
-#RewriteRule: Faz a Reescrita da URL
-# Cicunflexo Indica o Inicio e Cifrão Indica o Fim
-# (.+) Pegue todo o conteudo da URL
-# index.php?params=$1 infica para substiruir a requisição, redirecionando o fluxo para index.php e colocando-a inteiramente como um parametro.
-# Exemplo: index.php?url=blog/index
-# QSA Sifnifica que se houver uma string de consulta passada com a URL original, ela será anexada á reescrita
-# Exemplo: blog?situacao=1 será reescrita como index.php?url=blog&p=situacao
-# O sinalizador [L] faz mod_rewrite com que o processamento do conjunto de regras seja interrompido
-
-RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
-#Tudo que estiver depois do meu diretorio atual "index.php", vai ser atribuido na variavel URL. Caso minha index estivesse dentro de outro diretorio eu teria que especificarr o caminho certinho
-
-# Se voce deseja capturar apenas URLs que contenham pelo menos um caractere, use "+" (^(.+)$). Se voce deseja capturar todas as URLs incluindo as que estejam vazias, use "" (^(.*)$).
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

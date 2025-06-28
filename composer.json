@@ -2,7 +2,8 @@
   "name": "luisguilherme/mvc",
   "autoload": {
     "psr-4": {
-      "App\\": "app"
+      "App\\": "app",
+      "Routes\\": "routes"
     }
   },
   "authors": [
@@ -11,5 +12,11 @@
       "email": "luissgczdev@gmail.com"
     }
   ],
-  "require": {}
+  "require": {
+    "monolog/monolog": "^3.9",
+    "vlucas/phpdotenv": "^5.6",
+    "robmorgan/phinx": "^0.16.8",
+    "rakit/validation": "^1.4",
+    "phpmailer/phpmailer": "^6.10"
+  }
 }
