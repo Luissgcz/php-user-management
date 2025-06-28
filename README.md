@@ -1,10 +1,17 @@
 ## Requisitos
 
+<<<<<<< HEAD
 - PHP 8.3 ou superior;
 - Apache;
 - rewrite_module ativo no Apache;
 - MySQL 8.0 ou superior;
 - Composer;
+=======
+- Baixar o Wamp Server e Jogar esse Repositorio dentro da pasta www de onde ficou instalado o wamp
+- PHP 8.3 ou Superior
+- MYSql 8.0 ou Superior
+- Composer
+>>>>>>> 606533e1ae856804e38f8b6c7c4ade2e7ea6406d
 
 ## Como rodar o projeto baixado
 
