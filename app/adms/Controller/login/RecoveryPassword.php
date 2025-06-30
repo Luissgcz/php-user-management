@@ -15,7 +15,7 @@ class RecoveryPassword
 
     public function index()
     {
-        $this->data['head'] = 'Recuperar Senha';
+        $this->data['head'] = 'Recuperar Senha | Sistema CRUD MVC';
         $this->data['form'] = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 
@@ -35,6 +35,9 @@ class RecoveryPassword
                     $this->data['error'] = ['error' => 'Usuário Não Encontrado'];
                 }
             }
+
+            $loadView = new LoadViewService('adms/Views/login/recoveyPassword', $this->data);
+            $loadView->loadViewLogin();
         }
 
 

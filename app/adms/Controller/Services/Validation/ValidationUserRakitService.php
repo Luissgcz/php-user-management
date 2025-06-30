@@ -37,7 +37,7 @@ class ValidationUserRakitService
         //Validar os Dados
         $validation->validate();
         if ($validation->fails()) {
-            var_dump($validation->errors());
+            // var_dump($validation->errors());
             $arrayErrors = $validation->errors();
             //First of All pega todos os valores do Array
             foreach ($arrayErrors->firstOfAll() as $key => $value) {

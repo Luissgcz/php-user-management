@@ -43,7 +43,9 @@ class LoadPageAdm
         if (!$this->checkPageExists()) {
             //Chamar o Método para Salvar o Log
             GenerateLog::generateLog("error", "Pagina Não Encontrada", ['pagina' => $this->urlController, 'parametro' => $this->urlParameter]);
-
+            // $_SESSION['error'] = "Acesso não Autorizado";
+            // header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
+            // exit;
             die('Pagina não Existe');
         }
 
@@ -71,11 +73,8 @@ class LoadPageAdm
         if (in_array($this->urlController, $this->listPgPrivate) && isset($_SESSION['user'])) {
             return true;
         } else {
-            $_SESSION['error'] = "Acesso não Autorizado";
-            header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
+            return false;
         }
-
-        return false;
     }
 
 

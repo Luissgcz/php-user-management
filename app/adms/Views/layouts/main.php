@@ -11,17 +11,9 @@
 </head>
 
 <body>
-    <header>
-        <?php include('./app/adms/Views/partials/navbar.php') ?>
-        <?php include('./app/adms/Views/partials/menu.php') ?>
-
-    </header>
-
-    <?php include($this->view) ?>
-
-    <footer>
-        <?php include('./app/adms/Views/partials/footer.php') ?>
-    </footer>
+    <?php include('./app/adms/Views/partials/navbar.php') ?>
+    <?php include('./app/adms/Views/partials/menu.php') ?>
+    <?php include('./app/adms/Views/partials/footer.php') ?>
 </body>
 
 </html>

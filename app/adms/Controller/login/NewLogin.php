@@ -13,7 +13,7 @@ class NewLogin
 
     public function index()
     {
-        $this->data['head'] = 'Cadastrar Novo Usuário';
+        $this->data['head'] = 'Cadastrar Usuário | Sistema CRUD MVC';
 
 
         $this->data['form'] = filter_input_array(INPUT_POST, FILTER_DEFAULT);

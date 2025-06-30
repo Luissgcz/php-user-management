@@ -14,7 +14,7 @@ class Login
     public function index()
     {
         // var_dump($_SESSION);
-        $this->data['head'] = 'Login';
+        $this->data['head'] = 'Login | Sistema CRUD MVC';
         $this->data['form'] = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($this->data['form'])) {
             $this->data['error'] = ValidationUserRakitService::validateLogin($this->data['form'] ?? []);
@@ -22,7 +22,6 @@ class Login
 
         if (empty($this->data['error'])) {
             if (isset($this->data['form']['csfr_tokens']) && CSFRHelper::validateCSFRToken('form_login', $this->data['form']['csfr_tokens'])) {
-
                 $serviceDv = new UsersRepository();
                 $result = $serviceDv->authUser($this->data['form']['email'], $this->data['form']['password']);
 
