@@ -13,10 +13,7 @@ if (!empty($this->data['success'])) {
     echo "<p style='color:green'>{$this->data['success']}</p>";
 }
 ?>
-
-<div class="dashboard-header">
-    <h1>Dashboard de Usuários</h1>
-</div>
+<link rel="stylesheet" href="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/css/dashboard/dashboard.css" />
 
 <table>
     <thead>

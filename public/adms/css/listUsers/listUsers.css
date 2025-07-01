@@ -1,3 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+:root {
+  --header-height: 3rem;
+  --nav-width: 68px;
+
+  /* Paleta baseada no roxo #6c63ff */
+  --first-color: #6c63ff; /* Cor principal */
+  --first-color-light: #a9a5ff; /* Versão clara */
+  --first-color-dark: #5148cc; /* Versão escura */
+  --second-color: #ff6584; /* Rosa vibrante (contraste/complementar) */
+  --accent-color: #5ce1e6; /* Azul piscina (toque de destaque opcional) */
+
+  --white-color: #f8fafb;
+  --background-color: #f4f6f8;
+  --text-color: #2c2c2c;
+  --text-light-color: #7a7a7a;
+  --border-color: #d1d1d1;
+
+  --body-font: "Nunito", sans-serif;
+}
+
 .user-list tbody td > img {
   position: relative;
   max-width: 50px;
@@ -49,7 +70,7 @@
 }
 .table thead > tr > th > a span:after {
   content: "\f0dc";
-  font-family: FontAwesome;
+  font-family: var(--body-font);
   font-style: normal;
   font-weight: normal;
   text-decoration: inherit;

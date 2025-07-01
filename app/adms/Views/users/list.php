@@ -14,8 +14,9 @@ if (isset($_SESSION['success'])) {
 <?php
 if (!empty($this->data['users'])) {
 ?>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
     <link rel="stylesheet" href="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/css/listUsers/listUsers.css" />
+
     <table class="table user-list">
         <thead>
             <tr>
