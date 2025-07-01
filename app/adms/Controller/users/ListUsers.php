@@ -16,7 +16,7 @@ class ListUsers
     /**
      * @var int $limitResults Recebe a quantidade de registros que deve retornar do banco de dados
      */
-    private int $limitResults = 5;
+    private int $limitResults = 10;
     /**
      * Recuperar os Ultimos Usuários
      * @return void

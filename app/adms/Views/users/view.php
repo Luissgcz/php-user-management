@@ -2,22 +2,47 @@
 
 namespace App\adms\Views\users;
 
-echo isset($_SESSION['success']) ? "<p style='color:green;'>{$_SESSION['success']}</p>" : "";
-unset($_SESSION['success']);
-echo isset($_SESSION['error']) ? "<p style='color:red;'>{$_SESSION['error']}</p>" : "";
-unset($_SESSION['error']);
+?>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+    <div class="col-md-6">
+        <?php
+        if (isset($_SESSION['success'])) {
+            echo "<div class='alert alert-success'>{$_SESSION['success']}</div>";
+            unset($_SESSION['success']);
+        }
 
-if ($this->data['user']) {
-    echo "<br>";
-    extract($this->data['user']);
-    echo "Usuário: $name<br>";
-    echo "Email: $email<br>";
-    echo "Username: $username<br>";
-    // echo "Password: $password<br>";
-    //Operador Ternário nas minhas duas variaveis created e updated, se existir formata e mostra na tela, se não existir "" recebe uma string vazia
-    echo "Criado:" . ($created_at ? date('d/m/Y H:i:s', strtotime($created_at)) : "") . "<br>";
-    echo $updated_at ? 'Atualizado:' . date('d/m/Y H:i:s', strtotime($updated_at)) : "";
-} else {
-    $_SESSION['error'];
-    header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
-}
+        if (isset($_SESSION['error'])) {
+            echo "<div class='alert alert-danger'>{$_SESSION['error']}</div>";
+            unset($_SESSION['error']);
+        }
+
+        if (!empty($this->data['user'])) {
+            extract($this->data['user']);
+        ?>
+            <div class="card shadow">
+                <div class="card-header text-center bg-primary text-white">
+                    <h4 class="mb-0">Detalhes do Usuário</h4>
+                </div>
+                <div class="card-body">
+                    <p><strong>Usuário:</strong> <?php echo $name; ?></p>
+                    <p><strong>Email:</strong> <?php echo $email; ?></p>
+                    <p><strong>Username:</strong> <?php echo $username; ?></p>
+                    <p><strong>Criado:</strong> <?php echo $created_at ? date('d/m/Y H:i:s', strtotime($created_at)) : ''; ?></p>
+                    <p><strong></strong> <?php echo $updated_at ? 'Atualizado:' . date('d/m/Y H:i:s', strtotime($updated_at)) : ''; ?></p>
+                </div>
+                <div class="card-footer text-center bg-light">
+                    <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/list-users" class="btn btn-outline-primary">
+                        Voltar para a Lista de Usuários
+                    </a>
+                </div>
+            </div>
+        <?php
+        } else {
+            $_SESSION['error'] = 'Usuário não encontrado.';
+            header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
+            return;
+        }
+        ?>
+    </div>
+</div>

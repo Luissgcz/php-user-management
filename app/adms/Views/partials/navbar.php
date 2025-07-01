@@ -69,8 +69,8 @@
             </a>
         </nav>
     </div>
-    <!--Container Main start-->
-    <div class="height-100 bg-light">
+
+    <div class="container-fluid min-vh-100 d-flex flex-column">
         <?php include($this->view) ?>
     </div>
 

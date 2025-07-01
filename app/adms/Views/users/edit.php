@@ -1,11 +1,10 @@
 <?php
 
-namespace   App\adms\Views\users;
+namespace App\adms\Views\users;
 
 use App\adms\Helpers\CSFRHelper;
 
-echo "<h3>Edição do Usuário</h3>";
-
+// Verifica se existem dados
 if ($this->data) {
     extract($this->data);
 } else {
@@ -13,13 +12,64 @@ if ($this->data) {
     header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
     return;
 }
-?>
 
-<form action="" method="POST">
-    <input type="hidden" name="csfr_tokens" value="<?php echo CSFRHelper::generateCSFRToken('form_edit_user'); ?>">
-    <label for="name">Nome:</label>
-    <input type="text" id="name" for="name" name="name" placeholder="Digite Seu Nome" value="<?php echo $name; ?>">
-    <label for="name">Email:</label>
-    <input type="text" id="email" for="email" name="email" placeholder="Digite Seu Email" value="<?php echo $email; ?>">
-    <input type="submit" name="edit_user" value="Editar">
-</form>
+// Exibe mensagens de erro
+if (isset($this->data['error'])) {
+    foreach ($this->data['error'] as $value) {
+        echo "<div class='alert alert-danger'>{$value}</div>";
+    }
+}
+
+// Mensagens de sessão
+if (isset($_SESSION['success'])) {
+    echo "<div class='alert alert-success'>{$_SESSION['success']}</div>";
+    unset($_SESSION['success']);
+}
+
+if (isset($_SESSION['error'])) {
+    echo "<div class='alert alert-danger'>{$_SESSION['error']}</div>";
+    unset($_SESSION['error']);
+}
+?>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="col-md-6 login-container">
+            <h3 class="text-center mb-3">Edição do Usuário</h3>
+            <p class="text-center text-muted mb-4">Atualize os dados do usuário abaixo</p>
+
+            <form action="" method="POST">
+                <input type="hidden" name="csfr_tokens" value="<?php echo CSFRHelper::generateCSFRToken('form_edit_user'); ?>">
+
+                <div class="form-group">
+                    <label for="name">Nome:</label>
+                    <input type="text"
+                        name="name"
+                        id="name"
+                        class="form-control"
+                        placeholder="Digite seu nome"
+                        required
+                        value="<?php echo $name ?? ''; ?>">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label for="email">Email:</label>
+                    <input type="email"
+                        name="email"
+                        id="email"
+                        class="form-control"
+                        placeholder="Digite seu e-mail"
+                        required
+                        value="<?php echo $email ?? ''; ?>">
+                </div>
+
+                <input type="submit" name="edit_user" class="btn btn-primary btn-block" value="Atualizar">
+
+                <div class="text-center mt-3">
+                    <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/list-users" class="text-decoration-none">Voltar para lista</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
