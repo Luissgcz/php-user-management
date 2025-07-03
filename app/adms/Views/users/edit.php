@@ -32,43 +32,43 @@ if (isset($_SESSION['error'])) {
 }
 ?>
 
-<body>
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="col-md-6 login-container">
-            <h3 class="text-center mb-3">Edição do Usuário</h3>
-            <p class="text-center text-muted mb-4">Atualize os dados do usuário abaixo</p>
 
-            <form action="" method="POST">
-                <input type="hidden" name="csfr_tokens" value="<?php echo CSFRHelper::generateCSFRToken('form_edit_user'); ?>">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-md-6 login-container">
+        <h3 class="text-center mb-3">Edição do Usuário</h3>
+        <p class="text-center text-muted mb-4">Atualize os dados do usuário abaixo</p>
 
-                <div class="form-group">
-                    <label for="name">Nome:</label>
-                    <input type="text"
-                        name="name"
-                        id="name"
-                        class="form-control"
-                        placeholder="Digite seu nome"
-                        required
-                        value="<?php echo $name ?? ''; ?>">
-                </div>
+        <form action="" method="POST">
+            <input type="hidden" name="csfr_tokens" value="<?php echo CSFRHelper::generateCSFRToken('form_edit_user'); ?>">
+            <input type="hidden" name="id" value="<?php echo $id ?>">
 
-                <div class="form-group mb-4">
-                    <label for="email">Email:</label>
-                    <input type="email"
-                        name="email"
-                        id="email"
-                        class="form-control"
-                        placeholder="Digite seu e-mail"
-                        required
-                        value="<?php echo $email ?? ''; ?>">
-                </div>
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <input type="text"
+                    name="name"
+                    id="name"
+                    class="form-control"
+                    placeholder="Digite seu nome"
+                    required
+                    value="<?php echo $name ?? ''; ?>">
+            </div>
 
-                <input type="submit" name="edit_user" class="btn btn-primary btn-block" value="Atualizar">
+            <div class="form-group mb-4">
+                <label for="email">Email:</label>
+                <input type="email"
+                    name="email"
+                    id="email"
+                    class="form-control"
+                    placeholder="Digite seu e-mail"
+                    required
+                    value="<?php echo $email ?? ''; ?>">
+            </div>
 
-                <div class="text-center mt-3">
-                    <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/list-users" class="text-decoration-none">Voltar para lista</a>
-                </div>
-            </form>
-        </div>
+            <input type="submit" name="edit_user" class="btn btn-primary btn-block" value="Atualizar">
+
+            <div class="text-center mt-3">
+                <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/list-users" class="text-decoration-none">Voltar para lista</a>
+            </div>
+        </form>
     </div>
-</body>
+</div>

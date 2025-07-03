@@ -18,7 +18,7 @@ class ViewUser
         $this->data['user'] = $user->getUser($id);
 
         //Carregar a View
-        $loadView = new LoadViewService("adms/Views/users/view", $this->data);
+        $loadView = new LoadViewService("adms/Views/users/viewUser", $this->data);
         $loadView->loadView();
     }
 }

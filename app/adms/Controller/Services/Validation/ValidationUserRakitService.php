@@ -226,4 +226,35 @@ class ValidationUserRakitService
         }
         return $errors;
     }
+    public static function validateEditUser(array $data)
+    {
+        $errors = [];
+        $validator = new Validator;
+
+        $validation = $validator->make($data, [
+            //Instanciando o unique, passando minha tabela e a coluna a qual quero validar
+            'name' => 'min:3|required',
+            'email' => 'required|email',
+
+        ]);
+
+        $validation->setMessages([
+            'name:required' => 'O Campo Nome é Obrigatório',
+            'name:min' => 'O Campo Nome deve ter no Minimo 3 Caracteres',
+            'email:required' => 'O Campo Email é Obrigatório',
+            'email:email' => 'Formato de Email Invalido',
+        ]);
+
+        //Validar os Dados
+        $validation->validate();
+        if ($validation->fails()) {
+            $arrayErrors = $validation->errors();
+            //First of All pega todos os valores do Array
+            foreach ($arrayErrors->firstOfAll() as $key => $value) {
+                //For Each em todos os valores do array, para cada chave eu atribuo o nome da chave para o array errors, passando a mensagem 
+                $errors[$key] = $value;
+            }
+        }
+        return $errors;
+    }
 }

@@ -48,7 +48,7 @@ class UsersRepository extends DbConnection
     public function getUser($id)
     {
         //Query para Pegar os Registro do DB de um Usuário Especifico
-        $sql = 'SELECT id,name,email,username,password,created_at,updated_at
+        $sql = 'SELECT id,name,email,username,created_at,updated_at
              FROM ads
              WHERE id=:id';
         //Preparar a Query

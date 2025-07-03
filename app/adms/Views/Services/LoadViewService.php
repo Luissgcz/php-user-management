@@ -41,4 +41,14 @@ class LoadViewService
             die('Erro 005: Por favor tente novamente');
         }
     }
+
+    public function loadModal(): void
+    {
+        $this->view = './app/' . $this->nameView . '.php';
+        if (file_exists($this->view)) {
+            include './app/adms/Views/layouts/' . $this->nameView . '.php';
+        } else {
+            die('Erro 005: Por favor tente novamente');
+        }
+    }
 }

@@ -9,25 +9,59 @@ use App\adms\Views\Services\LoadViewService;
 class DeleteUser
 {
     private string|null|array $data = null;
+
+
+
     public function index(int|string $id)
     {
         $this->data['head'] = 'Deletar Usuário';
-        $dataUpdate = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if (isset($dataUpdate['csfr_tokens']) and CSFRHelper::validateCSFRToken('form_delete_user',  $dataUpdate['csfr_tokens'])) {
-            $deleteUser =  new UsersRepository();
-            $result = $deleteUser->deleteUser($id);
-            if ($result) {
-                $_SESSION['success'] = 'Usuário Excluido com successo';
-                header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
-                return;
+        $deleteUser = new UsersRepository();
+
+        // Trata AJAX POST
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
+            $dataUpdate = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+            if ($dataUpdate && CSFRHelper::validateCSFRToken('form_delete_user', $dataUpdate['csfr_tokens'] ?? '')) {
+
+                if ($isAjax) {
+                    $result = $deleteUser->deleteUser($dataUpdate['id']);
+                } else {
+                    $result = $deleteUser->deleteUser($id);
+                }
+
+
+                if ($isAjax) {
+                    header('Content-Type: application/json');
+                    echo json_encode([
+                        'success' => $result,
+                        'message' => $result ? 'Usuário Deletado com sucesso.' : 'Erro ao Deletar usuário.'
+                    ]);
+                    exit;
+                } else {
+                    // Envio normal (não-AJAX)
+                    $_SESSION['success'] = $result ? 'Usuário Deletado com sucesso' : 'Erro ao Deletar Usuário';
+                    header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
+                    return;
+                }
             } else {
-                $_SESSION['error'] = 'Erro ao Excluir Usuário';
-                header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
-                return;
+                if ($isAjax) {
+                    header('Content-Type: application/json');
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'Token CSRF inválido.'
+                    ]);
+                    exit;
+                } else {
+                    $_SESSION['error'] = 'Autenticação inválida';
+                    header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
+                    return;
+                }
             }
         }
 
-        $deleteUser =  new LoadViewService('adms/Views/users/delete', $this->data);
-        $deleteUser->loadView();
+
+        header('Location:' . $_ENV['APP_DOMAIN'] . '/Error403');
+        exit;
     }
 }

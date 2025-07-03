@@ -2,6 +2,7 @@
 
 namespace   App\adms\Controller\users;
 
+use App\adms\Controller\Services\Validation\ValidationUserRakitService;
 use App\adms\Models\Repository\UsersRepository;
 use App\adms\Views\Services\LoadViewService;
 use App\adms\Helpers\CSFRHelper;
@@ -9,31 +10,42 @@ use App\adms\Helpers\CSFRHelper;
 class EditUser
 {
     private string|null|array $data = null;
-    public function index(int|string $id)
+    public function index()
     {
 
         $editUser = new UsersRepository();
-        $this->data = $editUser->getUser($id);
-        $this->data['head'] = 'Editar Usuário';
+        // Tratando com AJAX
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
+            $dataUpdate = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        $dataUpdate = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if (isset($dataUpdate['csfr_tokens']) and CSFRHelper::validateCSFRToken('form_edit_user',  $dataUpdate['csfr_tokens'])) {
-            $result = $editUser->updateUser($id, $dataUpdate['name'], $dataUpdate['email'], time());
-            if ($result) {
-                $_SESSION['success'] = 'Usuário Editado com successo';
-                header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
-                return;
+
+
+
+            if (isset($dataUpdate) &&  CSFRHelper::validateCSFRToken('form_edit_user', $dataUpdate['csfr_tokens']) && $isAjax) {
+                $this->data['error'] = ValidationUserRakitService::validateEditUser($dataUpdate ?? []);
+                $result = $editUser->updateUser($dataUpdate['idUser'], $dataUpdate['name'], $dataUpdate['email'], time());
+
+                if ($result) {
+                    header('Content-Type: application/json');
+                    echo json_encode([
+                        'success' => $result,
+                        'message' => $result ? 'Usuário atualizado com sucesso.' : 'Erro ao atualizar usuário.'
+                    ]);
+                    exit;
+                }
             } else {
-                $_SESSION['error'] = 'Erro ao Editar Usuário';
-                header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
-                return;
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Token inválido.'
+                ]);
+                exit;
             }
-        } else {
-            // echo "Autenticação Inválida";
         }
 
-        //Carregar a View
-        $loadView = new LoadViewService("adms/Views/users/edit", $this->data);
+
+        $loadView = new LoadViewService('/adms/Views/users/list', $this->data);
         $loadView->loadView();
     }
 }

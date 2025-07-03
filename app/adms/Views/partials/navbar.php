@@ -1,9 +1,3 @@
-<link rel="stylesheet" href="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/css/navbar/navbar.css" />
-<script defer src="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/js/navbar/bootstrap.bundle.min.js"></script>
-<script defer src="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/js/navbar/jquery-3.3.1.min.js"></script>
-<script defer src="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/js/navbar/navbar.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-
 <nav class="nav">
     <div>
         <a href="#" class="nav_logo">
@@ -16,7 +10,7 @@
                 <i class='bx bx-grid-alt nav_icon'></i>
                 <span class="nav_name">Dashboard</span>
             </a>
-            <a href="<?php echo $_ENV['APP_DOMAIN'] ?>/view-user" class="nav_link">
+            <a href="<?php echo $_ENV['APP_DOMAIN'] ?>/list-users" class="nav_link">
                 <i class='bx bx-user nav_icon'></i>
                 <span class="nav_name">Usuários</span>
             </a>

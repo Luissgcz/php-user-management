@@ -12,6 +12,7 @@ class EditPassword
     private array|null $data = null;
     public function index(int|string $id)
     {
+
         $this->data['head'] = 'Editar Senha';
 
         $this->data['form'] = filter_input_array(INPUT_POST, FILTER_DEFAULT);
