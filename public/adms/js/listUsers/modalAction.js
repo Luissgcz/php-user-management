@@ -3,12 +3,15 @@ $(document).on("show.bs.modal", "#modalEditUser", function (event) {
   const userId = button.data("user-id");
   const name = button.data("user-name");
   const email = button.data("user-email");
+  const token = button.data("user-token");
   const modal = $(this); // o modal que vai abrir
 
+  console.log(token);
   // Define o valor do input escondido no modal
   modal.find("#user_id").val(userId);
   modal.find("#name").val(name);
   modal.find("#email").val(email);
+  modal.find("#csfr_tokens").val(token);
 });
 
 $(document).on("submit", "#formEditUser", function (event) {
@@ -28,7 +31,8 @@ $(document).on("submit", "#formEditUser", function (event) {
         $("#modalEditUser").modal("hide");
         location.reload();
       } else {
-        alert("Erro ao Atualizar " + res.message);
+        alert(res.message);
+        location.reload();
       }
     },
     error: function () {
@@ -40,11 +44,13 @@ $(document).on("submit", "#formEditUser", function (event) {
 $(document).on("show.bs.modal", "#modalDeleteUser", function (event) {
   const button = $(event.relatedTarget); // botão que abriu o modal
   const userId = button.data("user-id"); // valor do atributo data-user-id
+  const token = button.data("user-token");
   const modal = $(this); // o modal que vai abrir
   console.log(userId);
 
   // Define o valor do input escondido no modal
   modal.find("#user_id").val(userId);
+  modal.find("#csfr_tokens").val(token);
 });
 
 $(document).on("submit", "#formDeleteUser", function (event) {
@@ -93,5 +99,11 @@ $(document).on("show.bs.modal", "#modalViewUser", function (event) {
   modal.find("#user_username").text(username);
   modal.find("#password").text(password);
   modal.find("#user_created_at").text(created_at);
-  modal.find("#user_updated_at").text(updated_at);
+
+  if (updated_at) {
+    modal.find("#user_updated_at").text(updated_at);
+    modal.find("#updated_at_container").show();
+  } else {
+    modal.find("#updated_at_container").hide();
+  }
 });

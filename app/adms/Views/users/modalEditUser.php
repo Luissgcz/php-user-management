@@ -4,20 +4,18 @@ use App\adms\Helpers\CSFRHelper;
 
 ?>
 
-<div class="modal fade" id="modalEditUser" tabindex="-1" aria-labelledby="modalEditUserLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="modalEditUser" tabindex="-1" aria-labelledby="modalEditUserLabel" aria-hidden="true" data-bs-backdrop="false">
+    <div class="modal-dialog  modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
-
             <form id="formEditUser">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalEditUserLabel">Edição do Usuário</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
-
                 <div class="modal-body">
                     <p class="text-muted text-center">Atualize os dados do usuário abaixo</p>
 
-                    <input type="hidden" name="csfr_tokens" value="<?php echo CSFRHelper::generateCSFRToken('form_edit_user'); ?>">
+                    <input type="hidden" name="csfr_tokens" id="csfr_tokens" value="">
                     <input type="hidden" name="idUser" id="user_id" value="">
 
                     <div class="mb-3">

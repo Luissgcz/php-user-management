@@ -23,7 +23,6 @@ class ListUsers
      */
     public function index(string|int $page)
     {
-        var_dump($_SESSION);
         $listUsers = new UsersRepository();
         $this->data['head'] = 'Listar Usuário';
         $this->data['users'] = $listUsers->getAllUsers((int) $page, (int) $this->limitResults);

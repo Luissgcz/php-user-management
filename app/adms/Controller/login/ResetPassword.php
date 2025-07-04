@@ -22,7 +22,7 @@ class ResetPassword
         }
 
         if ($this->validateResetPass()) {
-            $this->loadView();
+            $this->loadViewLogin();
         }
     }
 
@@ -77,7 +77,7 @@ class ResetPassword
     }
 
 
-    public function loadView()
+    public function loadViewLogin()
     {
         $loadView = new LoadViewService('adms/Views/login/resetPassword', $this->data);
         $loadView->loadViewLogin();

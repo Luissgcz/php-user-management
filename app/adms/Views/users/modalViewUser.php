@@ -1,5 +1,5 @@
-<div class="modal fade" id="modalViewUser" tabindex="-1" aria-labelledby="modalViewUserLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="modalViewUser" tabindex="-1" aria-labelledby="modalViewUserLabel" aria-hidden="true" data-bs-backdrop="false">
+    <div class="modal-dialog  modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -20,12 +20,10 @@
                 <div class="mb-3">
                     <p><strong>Criado em:</strong> <span id="user_created_at"></span></p>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3" id="updated_at_container" style="display: none;">
                     <p><strong>Atualizado em:</strong> <span id="user_updated_at"></span></p>
                 </div>
-                <div class="mb-3">
-                    <p><strong>Senha:</strong> <span id="user_password"></span></p>
-                </div>
+
             </div>
 
             <div class="modal-footer">

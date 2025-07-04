@@ -187,4 +187,15 @@ a {
   overflow-x: hidden;
 }
 
+.content-main .modal {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  margin: 0 !important;
+  z-index: 1055;
+  width: 100%;
+  max-width: 600px; /* ou o tamanho que quiser */
+}
+
 /* Quando o menu lateral estiver expandido */

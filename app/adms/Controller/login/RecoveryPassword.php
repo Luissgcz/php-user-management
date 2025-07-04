@@ -22,7 +22,7 @@ class RecoveryPassword
         if (isset($this->data['form'])) {
             $this->data['error'] = ValidationUserRakitService::validateRecoveryEmail($this->data['form']);
 
-            if (empty($this->data['error']) && CSFRHelper::validateCSFRToken('form_recovery_password', $this->data['form']['csfr_token'])) {
+            if (empty($this->data['error']) && CSFRHelper::validateCSFRToken('form_recovery_password', $this->data['form']['csfr_tokens'])) {
                 $serviceRepository = new RecoveryPasswordRepository();
                 $resultEmail = $serviceRepository->validateEmailExists($this->data['form']['email']);
                 if ($resultEmail) {
@@ -39,11 +39,6 @@ class RecoveryPassword
             $loadView = new LoadViewService('adms/Views/login/recoveyPassword', $this->data);
             $loadView->loadViewLogin();
         }
-
-
-
-
-
 
         $loadView = new LoadViewService('adms/Views/login/recoveryPassword', $this->data);
         $loadView->loadViewLogin();

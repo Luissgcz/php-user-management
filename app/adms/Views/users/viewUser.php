@@ -37,7 +37,7 @@ if (!empty($this->data['user'])) {
                 <p><strong>Email:</strong> <?php echo $email; ?></p>
                 <p><strong>Username:</strong> <?php echo $username; ?></p>
                 <p><strong>Criado:</strong> <?php echo $created_at ? date('d/m/Y H:i:s', strtotime($created_at)) : ''; ?></p>
-                <p><strong></strong> <?php echo $updated_at ? 'Atualizado:' . date('d/m/Y H:i:s', strtotime($updated_at)) : ''; ?></p>
+                <p> <?php echo $updated_at ? '<strong>Atualizado: </strong>' . date('d/m/Y H:i:s', strtotime($updated_at)) : ''; ?></p>
             </div>
             <div class="card-footer text-center bg-light">
                 <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/list-users" class="btn btn-outline-primary">

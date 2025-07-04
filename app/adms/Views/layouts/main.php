@@ -21,7 +21,9 @@
         </div>
     </header>
     <div class="l-navbar" id="nav-bar">
-        <?php include('./app/adms/Views/partials/navbar.php') ?>
+        <?php include('./app/adms/Views/partials/navbar.php');
+        ?>
+
     </div>
 
 

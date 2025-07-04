@@ -29,7 +29,7 @@ if (isset($_SESSION['error'])) {
 
             <form method="POST" action="#">
 
-                <input type="hidden" name="csfr_token" value="<?php echo CSFRHelper::generateCSFRToken('form_recovery_password'); ?>">
+                <input type="hidden" name="csfr_tokens" value="<?php echo CSFRHelper::generateCSFRToken('form_recovery_password'); ?>">
 
 
                 <div class="form-group">

@@ -16,36 +16,43 @@ class EditUser
         $editUser = new UsersRepository();
         // Tratando com AJAX
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
             $dataUpdate = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-
-
-
-            if (isset($dataUpdate) &&  CSFRHelper::validateCSFRToken('form_edit_user', $dataUpdate['csfr_tokens']) && $isAjax) {
+            if (isset($dataUpdate) && CSFRHelper::validateCSFRToken('form_edit_user', $dataUpdate['csfr_tokens'])) {
                 $this->data['error'] = ValidationUserRakitService::validateEditUser($dataUpdate ?? []);
-                $result = $editUser->updateUser($dataUpdate['idUser'], $dataUpdate['name'], $dataUpdate['email'], time());
 
-                if ($result) {
+                if (empty($this->data['error'])) {
+                    $result = $editUser->updateUser($dataUpdate['idUser'], $dataUpdate['name'], $dataUpdate['email'], time());
+
                     header('Content-Type: application/json');
                     echo json_encode([
                         'success' => $result,
-                        'message' => $result ? 'Usuário atualizado com sucesso.' : 'Erro ao atualizar usuário.'
+                        'message' => $result ? 'Usuário atualizado com Sucesso' : 'Falha ao atualizar usuário'
+                    ]);
+                    exit;
+                } else {
+                    header('Content-Type: application/json');
+
+                    $message = $this->data['error'];
+                    if (is_array($message)) {
+                        $message = implode(' | ', $message);
+                    }
+
+                    echo json_encode([
+                        'success' => false,
+                        'message' => $message
                     ]);
                     exit;
                 }
-            } else {
-                header('Content-Type: application/json');
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Token inválido.'
-                ]);
-                exit;
             }
+
+            // Se não for AJAX ou falhar a validação CSRF, retorne erro JSON também
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => false,
+                'message' => 'Requisição Inválida ou Token CSRF inválido.'
+            ]);
+            exit;
         }
-
-
-        $loadView = new LoadViewService('/adms/Views/users/list', $this->data);
-        $loadView->loadView();
     }
 }

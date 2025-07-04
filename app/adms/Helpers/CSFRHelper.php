@@ -12,6 +12,9 @@ class CSFRHelper
 
     public static function generateCSFRToken(string $formIdentifier): string
     {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
         //A função random_bytes gera uma sequencia de 32 bytes aleatorios.
         //A função bin2hex converte os bytes binarios gerados pela função random_bytes em um representação hexadecimal
         $token = bin2hex(random_bytes(32));
@@ -30,6 +33,7 @@ class CSFRHelper
         if (isset($_SESSION['csfr_tokens'][$formIdentifier]) && hash_equals($_SESSION['csfr_tokens'][$formIdentifier], $token)) {
             //Token Usado Deve Ser Invalidado
             unset($_SESSION['csfr_tokens'][$formIdentifier]);
+
             return true;
         }
     }

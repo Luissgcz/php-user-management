@@ -22,7 +22,7 @@ class UsersRepository extends DbConnection
         // var_dump($offSet);
 
         //Query para Pegar os Registro do DB
-        $sql = 'SELECT id,name,email,username,password,created_at
+        $sql = 'SELECT id,name,email,username,password,created_at,updated_at
         FROM ads
         ORDER BY id DESC
         LIMIT :limit OFFSET :offset';
