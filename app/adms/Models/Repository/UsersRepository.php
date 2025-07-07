@@ -61,6 +61,24 @@ class UsersRepository extends DbConnection
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getUserAdm($id)
+    {
+        //Query para Pegar os Registro do DB de um Usuário Especifico
+        $sql = 'SELECT *
+             FROM ads
+             WHERE id=:id';
+        //Preparar a Query
+        $stmt = $this->getConnection()->prepare($sql);
+        //Executar a Query
+        $stmt->execute([
+            'id' => $id
+        ]);
+        //Retornar todos os resultados
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+
 
 
     public function insertUser(string $name, string $email, $password,  int $created_at): bool
@@ -141,6 +159,7 @@ class UsersRepository extends DbConnection
 
             if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['user'] = $user['name'];
+                $_SESSION['userId'] = $user['id'];
                 return true;
             } else {
                 return false;

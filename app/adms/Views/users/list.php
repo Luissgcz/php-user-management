@@ -8,32 +8,32 @@ $csrfEditUser = CSFRHelper::generateCSFRToken('form_edit_user');
 $csrfDeleteUser = CSFRHelper::generateCSFRToken('form_delete_user');
 
 
-
 if (isset($this->data['error'])) {
     foreach ($this->data['error'] as $value) {
-        echo "<div class='alert alert-danger'>{$value}</div>";
+        echo "<div class='alert alert-danger' role='alert'>{$value}</div>";
     }
 }
 
+
 if (isset($_SESSION['success'])) {
-    echo "<p style='color:green;'>{$_SESSION['success']}</p>";
+    echo "<div class='alert alert-success' role='alert'>{$_SESSION['success']}</div>";
     unset($_SESSION['success']);
 }
 
 
 if (isset($_SESSION['error'])) {
-    echo "<p style='color:green;'>{$_SESSION['error']}</p>";
+    echo "<div class='alert alert-danger' role='alert'>{$_SESSION['error']}</div>";
     unset($_SESSION['error']);
 }
 
 
 ?>
 
-<a href="<?php echo $_ENV['APP_DOMAIN']; ?>/create-user" class="btn btn-success">Criar Usuário</a><br><br>
+<a href="<?php echo $_ENV['APP_DOMAIN']; ?>/create-user" class="btn btn-success">Criar Usuário</a>
+
 
 <?php
 if (($this->data['users'])) {
-
 
 ?>
 
@@ -99,6 +99,8 @@ if (($this->data['users'])) {
 <?php
 } else {
     // Caso não tenha usuários
-    echo '<h3 style="color: #FF0000;">Não tem Usuário a Ser Listado</h3>';
+    echo '<div class="alert alert-danger text-center" role="alert">
+            <h4 class="mb-0">Não há usuários a serem listados.</h4>
+          </div>';
 }
 ?>
