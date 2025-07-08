@@ -78,5 +78,10 @@ if (isset($_SESSION['error'])) {
 
             <input type="submit" name="create_user" class="btn btn-primary btn-block w-100" value="Cadastrar">
         </form>
+        <div class="text-center mt-3">
+            <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/list-users" class="btn btn-outline-secondary w-100">
+                Voltar para Lista
+            </a>
+        </div>
     </div>
 </div>

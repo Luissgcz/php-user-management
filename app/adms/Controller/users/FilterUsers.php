@@ -30,6 +30,11 @@ class FilterUsers extends DbConnection
                 $params[':email'] = "%" . strtolower($email) . "%";
             }
 
+            if (!empty($status)) {
+                $query .= "AND LOWER(status) LIKE :status ";
+                $params[':status'] = "%" . strtolower($status) . "%";
+            }
+
             $query .= "ORDER BY name";
 
             $stmt = $this->getConnection()->prepare($query);

@@ -37,8 +37,6 @@ class LoadViewService
         $this->view = './app/' . $this->nameView . '.php';
         if (file_exists($this->view)) {
             include './app/adms/Views/layouts/login.php';
-        } else {
-            die('Erro 005: Por favor tente novamente');
         }
     }
 

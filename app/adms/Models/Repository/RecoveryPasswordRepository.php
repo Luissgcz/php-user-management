@@ -12,7 +12,7 @@ class RecoveryPasswordRepository extends DbConnection
     public function validateEmailExists($email)
     {
         //Query para Pegar os Registro do DB de um Usuário Especifico
-        $sql = 'SELECT id,name,email,username,password,created_at,updated_at
+        $sql = 'SELECT id,name,email,password,created_at,updated_at
                  FROM ads
                  WHERE email=:email';
         //Preparar a Query

@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <?php include('./app/adms/Views/partials/head.php') ?>
+    <?php include('./app/adms/Views/partials/head.php')
+    ?>
 </head>
 
 
@@ -16,7 +17,9 @@
         <div class="header_user">
             <p><?php echo $_SESSION['user'] ??  "" ?></p>
             <div class="header_img">
-                <img src="<?php echo $_ENV['APP_DOMAIN'] ?>/public/adms/images/userimg.png" alt="UserIMG">
+                <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/view-user/<?php echo $_SESSION['userId'] ?>">
+                    <img src="<?php echo $_ENV['APP_DOMAIN'] ?>/storage/uploads/profile/<?php echo $this->data['userLogin']['image'] ?? 'default.png' ?>" alt="UserIMG">
+                </a>
             </div>
         </div>
     </header>

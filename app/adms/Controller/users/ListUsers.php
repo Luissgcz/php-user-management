@@ -25,8 +25,12 @@ class ListUsers
     {
         $listUsers = new UsersRepository();
         $this->data['head'] = 'Listar Usuário';
+        $this->data['userLogin'] = $listUsers->getUser($_SESSION['userId']);
         $this->data['users'] = $listUsers->getAllUsers((int) $page, (int) $this->limitResults);
         $this->data['pagination'] = PaginationService::generatePagination((int)$listUsers->getAmountUser(), (int)$this->limitResults, (int)$page, 'list-users');
+
+
+
 
         //Carregar a View
         $loadView = new LoadViewService("adms/Views/users/list", $this->data);

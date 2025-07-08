@@ -18,7 +18,10 @@ class CreateUser
 
     public function index()
     {
+
         $this->data['head'] = 'Criar Usuário';
+        $insertUser = new UsersRepository();
+        $this->data['userLogin'] = $insertUser->getUser($_SESSION['userId']);
         $this->data['form'] = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($this->data['form']['csfr_tokens']) && CSFRHelper::validateCSFRToken('form_create_user', $this->data['form']['csfr_tokens'])) {
 
@@ -32,7 +35,7 @@ class CreateUser
 
 
             if (empty($this->data['error'])) {
-                $insertUser = new UsersRepository();
+
                 $result = $insertUser->insertUser($this->data['form']['name'], $this->data['form']['email'], password_hash($this->data['form']['password'], PASSWORD_DEFAULT), time());
 
                 if ($result) {

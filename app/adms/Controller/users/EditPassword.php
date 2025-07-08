@@ -17,6 +17,7 @@ class EditPassword
 
         $this->data['form'] = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $editPassword = new UsersRepository();
+        $this->data['userLogin'] =  $editPassword->getUser($_SESSION['userId']);
 
         if (!empty($this->data['form'])) {
             $result = $editPassword->getUserAdm($id);

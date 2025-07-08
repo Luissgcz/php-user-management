@@ -17,6 +17,8 @@ class ViewUser
         $this->data['head'] = 'Visualizar Usuário';
 
         $user = new UsersRepository();
+        $this->data['userLogin'] = $user->getUser($_SESSION['userId']);
+
         $this->data['user'] = $user->getUser($id);
 
         $formData = filter_input_array(INPUT_POST, FILTER_DEFAULT);

@@ -24,7 +24,7 @@ class UsersRepository extends DbConnection
         //Query para Pegar os Registro do DB
         $sql = 'SELECT id,name,email,password,created_at,updated_at,image,status
         FROM ads
-        ORDER BY id DESC
+        ORDER BY name
         LIMIT :limit OFFSET :offset';
         //Preparar a Query
         $stmt = $this->getConnection()->prepare($sql);

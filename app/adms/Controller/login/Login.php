@@ -27,6 +27,7 @@ class Login
 
                 if ($result) {
                     header('Location:' . $_ENV['APP_DOMAIN'] . '/dashboard');
+                    exit;
                 } else {
                     // echo "Erro ao Logar no Sistema<br>";
                     $_SESSION['error'] = 'Usuário ou Senha Incorreta';

@@ -27,7 +27,7 @@ if (isset($_SESSION['error'])) {
             <h3 class="text-center mb-3">Recuperar Senha</h3>
             <p class="text-center text-muted mb-4">Informe seu e-mail para receber o código de recuperação</p>
 
-            <form method="POST" action="#">
+            <form method="POST">
 
                 <input type="hidden" name="csfr_tokens" value="<?php echo CSFRHelper::generateCSFRToken('form_recovery_password'); ?>">
 

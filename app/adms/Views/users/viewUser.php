@@ -87,7 +87,7 @@ if (!empty($this->data['user'])) {
                     <!-- Informações de sistema -->
                     <div class="mt-4">
                         <p><strong>Criado em:</strong> <?php echo date('d/m/Y H:i:s', strtotime($created_at)); ?></p>
-                        <p><strong>Atualizado em:</strong> <?php echo date('d/m/Y H:i:s', strtotime($updated_at)); ?></p>
+                        <p><?php echo isset($updated_at) ? "<strong>Atualizado em: </strong>" . date('d/m/Y H:i:s', strtotime($updated_at)) : ''; ?></p>
                     </div>
                 </div>
 
