@@ -59,7 +59,6 @@ class AddAdmsUsers extends AbstractSeed
                 $data[] = [
                     'name' => $user['name'],
                     'email' => $user['email'],
-                    'username' => $user['email'],
                     'password' => password_hash('123456a', PASSWORD_DEFAULT),
                     'created_at' => date("Y-m-d H:i:s")
                 ];

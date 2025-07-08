@@ -39,6 +39,7 @@
     <!-- Seus scripts -->
     <script src="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/js/navbar/navbar.js"></script>
     <script src="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/js/listUsers/modalAction.js"></script>
+    <script src="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/js/listUsers/filterUsers.js"></script>
 </body>
 
 </html>

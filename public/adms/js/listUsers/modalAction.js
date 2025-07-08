@@ -6,18 +6,22 @@ $(document).on("show.bs.modal", "#modalEditUser", function (event) {
   const token = button.data("user-token");
   const modal = $(this); // o modal que vai abrir
 
-  console.log(token);
   // Define o valor do input escondido no modal
   modal.find("#user_id").val(userId);
   modal.find("#name").val(name);
   modal.find("#email").val(email);
   modal.find("#csfr_tokens").val(token);
+  console.log(userId);
+  console.log(name);
+  console.log(email);
+  console.log(token);
 });
 
 $(document).on("submit", "#formEditUser", function (event) {
   event.preventDefault();
   const form = $(this);
   const formData = form.serialize();
+
   const userId = form.find("#user_id").val();
 
   $.ajax({
@@ -86,7 +90,6 @@ $(document).on("show.bs.modal", "#modalViewUser", function (event) {
   const userId = button.data("user-id"); // valor do atributo data-user-id
   const name = button.data("user-name"); // valor do atributo data-user-id
   const email = button.data("user-email"); // valor do atributo data-user-id
-  const username = button.data("user-username"); // valor do atributo data-user-id
   const password = button.data("user-password"); // valor do atributo data-user-id
   const created_at = button.data("user-created"); // valor do atributo data-user-id
   const updated_at = button.data("user-updated"); // valor do atributo data-user-id
@@ -96,7 +99,6 @@ $(document).on("show.bs.modal", "#modalViewUser", function (event) {
   modal.find("#user_id").val(userId); // se for input hidden, continua com .val()
   modal.find("#user_name").text(name);
   modal.find("#user_email").text(email);
-  modal.find("#user_username").text(username);
   modal.find("#password").text(password);
   modal.find("#user_created_at").text(created_at);
 

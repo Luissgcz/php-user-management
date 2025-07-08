@@ -27,7 +27,7 @@ class EditUser
                     header('Content-Type: application/json');
                     echo json_encode([
                         'success' => $result,
-                        'message' => $result ? 'Usuário atualizado com Sucesso' : 'Falha ao atualizar usuário'
+                        'message' => $result ? 'Usuário Atualizado com Sucesso' : 'Falha ao atualizar usuário'
                     ]);
                     exit;
                 } else {

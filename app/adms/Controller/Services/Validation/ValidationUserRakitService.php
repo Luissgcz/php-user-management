@@ -17,7 +17,7 @@ class ValidationUserRakitService
 
 
         $validation = $validator->make($data, [
-            'name' => 'required',
+            'name' => 'required|min:3',
             //Instanciando o unique, passando minha tabela e a coluna a qual quero validar
             'email' => 'required|email|unique:ads,email',
             'password' => 'required|min:6',
@@ -25,6 +25,7 @@ class ValidationUserRakitService
         ]);
 
         $validation->setMessages([
+            'name:min' => 'O Campo Nome Deve Ter No Minimo 3 Caracteres',
             'name:required' => 'O Campo Nome é Obrigatório',
             'email:required' => 'O Campo Email é Obrigatório',
             'email:unique' => 'Email já Cadastrado',

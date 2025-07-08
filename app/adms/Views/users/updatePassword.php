@@ -23,7 +23,7 @@ if (isset($_SESSION['error'])) {
 
 ?>
 
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
+<div class="form-wrapper d-flex justify-content-center align-items-center">
     <div class="col-md-6 login-container">
         <h3 class="text-center mb-3">Alterar Senha</h3>
         <p class="text-center text-muted mb-4">Informe sua senha atual e a nova senha desejada</p>

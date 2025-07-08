@@ -22,7 +22,7 @@ class UsersRepository extends DbConnection
         // var_dump($offSet);
 
         //Query para Pegar os Registro do DB
-        $sql = 'SELECT id,name,email,username,password,created_at,updated_at
+        $sql = 'SELECT id,name,email,password,created_at,updated_at,image,status
         FROM ads
         ORDER BY id DESC
         LIMIT :limit OFFSET :offset';
@@ -48,7 +48,7 @@ class UsersRepository extends DbConnection
     public function getUser($id)
     {
         //Query para Pegar os Registro do DB de um Usuário Especifico
-        $sql = 'SELECT id,name,email,username,created_at,updated_at
+        $sql = 'SELECT id,name,email,created_at,updated_at,image,phone,status
              FROM ads
              WHERE id=:id';
         //Preparar a Query
@@ -60,6 +60,42 @@ class UsersRepository extends DbConnection
         //Retornar todos os resultados
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function updateUserInfo(int $id, string $name, string $email, int $updated_at, $phone, $status): bool
+    {
+        try {
+            $sql = 'UPDATE ads SET name= :name, email= :email,updated_at= :updated_at,phone= :phone,status= :status WHERE id = :id';
+            $str_updated_at = date("Y-m-d H:i:s", $updated_at);
+            $stmt = $this->getConnection()->prepare($sql);
+            return $stmt->execute([
+                ':id' => $id,
+                ':name' => $name,
+                ':email' => $email,
+                ':phone' => $phone,
+                ':status' => $status,
+                ':updated_at' => $str_updated_at
+            ]);
+        } catch (Exception $err) {
+            GenerateLog::generateLog('alert', 'Erro ao Editar Usuário', ["error" => $err->getMessage()]);
+            return false;
+        }
+    }
+
+
+    public function updateImg($id, $pathImg)
+    {
+        //Query para Pegar os Registro do DB de um Usuário Especifico
+        $sql = 'UPDATE ads SET image=:image WHERE id=:id';
+
+        //Preparar a Query
+        $stmt = $this->getConnection()->prepare($sql);
+        //Executar a Query
+        return $stmt->execute([
+            'id' => $id,
+            'image' => $pathImg
+        ]);
+    }
+
 
     public function getUserAdm($id)
     {
@@ -77,20 +113,15 @@ class UsersRepository extends DbConnection
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-
-
-
-
     public function insertUser(string $name, string $email, $password,  int $created_at): bool
     {
         try {
-            $sql = 'INSERT INTO ads (name,email,username,password,created_at) VALUES (:name,:email,:username,:password,:created_at)';
+            $sql = 'INSERT INTO ads (name,email,password,created_at) VALUES (:name,:email,:password,:created_at)';
             $stmt = $this->getConnection()->prepare($sql);
             $strToTime = date("Y-m-d H:i:s", $created_at);
             $stmt->execute([
                 ':name' => $name,
                 ':email' => $email,
-                ':username' => $email,
                 ':password' => $password,
                 ':created_at' => $strToTime
             ]);
@@ -104,14 +135,13 @@ class UsersRepository extends DbConnection
     public function updateUser(int $id, string $name, string $email, int $updated_at): bool
     {
 
-        $sql = 'UPDATE ads SET name= :name, email= :email, username= :username,updated_at= :updated_at WHERE id = :id';
+        $sql = 'UPDATE ads SET name= :name, email= :email,updated_at= :updated_at WHERE id = :id';
         $str_updated_at = date("Y-m-d H:i:s", $updated_at);
         $stmt = $this->getConnection()->prepare($sql);
         return $stmt->execute([
             ':id' => $id,
             ':name' => $name,
             ':email' => $email,
-            ':username' => $email,
             ':updated_at' => $str_updated_at
         ]);
     }
@@ -173,13 +203,12 @@ class UsersRepository extends DbConnection
     public function newUser($name, $email, $password, $created_at): bool
     {
         try {
-            $sql = 'INSERT INTO ads (name,email,username,password,created_at) VALUES (:name,:email,:username,:password,:created_at)';
+            $sql = 'INSERT INTO ads (name,email,password,created_at) VALUES (:name,:email,:password,:created_at)';
             $stmt = $this->getConnection()->prepare($sql);
             $strToTime = date("Y-m-d H:i:s", $created_at);
             $stmt->execute([
                 ':name' => $name,
                 ':email' => $email,
-                ':username' => $email,
                 ':password' => $password,
                 ':created_at' => $strToTime
             ]);

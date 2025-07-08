@@ -15,9 +15,6 @@
                     <p><strong>Email:</strong> <span id="user_email"></span></p>
                 </div>
                 <div class="mb-3">
-                    <p><strong>Username:</strong> <span id="user_username"></span></p>
-                </div>
-                <div class="mb-3">
                     <p><strong>Criado em:</strong> <span id="user_created_at"></span></p>
                 </div>
                 <div class="mb-3" id="updated_at_container" style="display: none;">

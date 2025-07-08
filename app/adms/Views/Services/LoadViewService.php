@@ -51,4 +51,9 @@ class LoadViewService
             die('Erro 005: Por favor tente novamente');
         }
     }
+
+    public function loadPartialView(): void
+    {
+        require './app/' . $this->nameView . ".php";
+    }
 }

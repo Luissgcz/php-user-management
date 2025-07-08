@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 :root {
-  --header-height: 2rem;
+  --header-height: 1rem;
   --nav-width: 68px;
 
   /* Paleta baseada no roxo #6c63ff */
@@ -187,6 +187,16 @@ a {
   overflow-x: hidden;
 }
 
+.form-wrapper {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinha no topo */
+  margin-top: 3rem; /* Ajusta para descer do topo */
+}
+
 .content-main .modal {
   position: fixed !important;
   top: 50% !important;
@@ -198,4 +208,42 @@ a {
   max-width: 600px; /* ou o tamanho que quiser */
 }
 
-/* Quando o menu lateral estiver expandido */
+/* Espaçamento entre o botão Criar Usuário e o formulário */
+a.btn.btn-success {
+  margin-bottom: 20px;
+}
+
+/* Estilo do formulário de filtro */
+#filterForm .form-control,
+#filterForm .form-select {
+  height: 40px;
+  font-size: 14px;
+}
+
+/* Botão Filtrar */
+#filterForm .btn-primary {
+  width: 100%;
+  height: 40px;
+  font-weight: 500;
+}
+
+/* Responsividade em telas pequenas */
+@media (max-width: 768px) {
+  #filterForm .row .col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  #filterForm .btn-primary {
+    margin-top: 10px;
+  }
+
+  a.btn.btn-success {
+    width: 100%;
+  }
+}
+
+/* Espaçamento entre os modais e a tabela */
+#userTableContainer {
+  margin-top: 20px;
+}

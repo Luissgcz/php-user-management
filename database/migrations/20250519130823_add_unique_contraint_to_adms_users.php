@@ -14,7 +14,6 @@ final class AddUniqueContraintToAdmsUsers extends AbstractMigration
             //Adicionar Indices Unicos as Colunas email e username
             // 'name' => 'idx_unique_username||email' - Nomea o Indice Unico
             $table->addIndex(['email'], ['unique' => true, 'name' => 'idx_unique_email'])
-                ->addIndex(['username'], ['unique' => true, 'name' => 'idx_unique_username'])
                 ->update();
         }
     }
