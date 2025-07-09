@@ -34,8 +34,82 @@ body {
   font-size: var(--normal-font-size);
   transition: 0.5s;
 }
+
+.btn {
+  background-color: var(--first-color);
+  color: var(--background-color);
+}
+
+.btn:hover {
+  background-color: var(--first-color-dark);
+  color: var(--background-color);
+}
+
+.form-select {
+  border-color: var(--first-color);
+}
+
+.form-select:focus {
+  border-color: var(--first-color-light);
+  box-shadow: 0 0 0 0.25rem rgba(108, 99, 255, 0.25); /* ajustar para sua cor */
+  outline: 0;
+}
+
+input.form-control:focus,
+textarea.form-control:focus,
+select.form-select:focus {
+  border-color: var(--first-color-light);
+  box-shadow: 0 0 0 0.25rem rgba(108, 99, 255, 0.25); /* ajuste conforme sua cor */
+  outline: 0;
+}
+
+.card {
+  border: 1px solid var(--first-color);
+  box-shadow: 0 0 0.5rem rgba(108, 99, 255, 0.25); /* sombra suave com cor do tema */
+  border-radius: 0.5rem;
+}
+.container-fluid {
+  overflow-x: hidden;
+}
+
+/* Previne que o card exceda a largura do pai */
+.card {
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Faz o header se ajustar perfeitamente */
+.card-header {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  background-color: var(--first-color);
+  color: var(--background-color);
+  text-align: center;
+}
+
+/* Estilo de sombra e borda padrão para manter consistência */
+.card.shadow {
+  box-shadow: 0 0 0.5rem rgba(108, 99, 255, 0.25);
+  border: 1px solid var(--first-color);
+  border-radius: 0.5rem;
+}
+.card-header {
+  background-color: var(--first-color);
+  color: var(--background-color); /* ou branco, se preferir */
+  text-align: center;
+}
+
+.card-header.custom-header {
+  background-color: var(--first-color);
+  color: var(--background-color);
+  text-align: center;
+}
+
 a {
   text-decoration: none;
+  color: var(--text-color);
 }
 .header {
   width: 100%;

@@ -32,8 +32,8 @@ if (isset($_SESSION['error'])) {
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="mb-4">
-                                <h3>Sign In</h3>
-                                <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
+                                <h3>Entrar na Conta</h3>
+                                <p class="mb-4">Faça login para continuar explorando nossos serviços.</p>
                             </div>
                             <form action="#" method="POST">
                                 <input type="hidden" name="csfr_tokens" value="<?php echo CSFRHelper::generateCSFRToken('form_login'); ?>">
@@ -74,19 +74,6 @@ if (isset($_SESSION['error'])) {
 
                                 <input type="submit" value="Log In" class="btn btn-block btn-primary">
 
-                                <span class="d-block text-left my-4 text-muted">&mdash; Entrar Com &mdash;</span>
-
-                                <div class="social-login">
-                                    <a href="#" class="facebook">
-                                        <span class="icon-facebook mr-3"></span>
-                                    </a>
-                                    <a href="#" class="twitter">
-                                        <span class="icon-twitter mr-3"></span>
-                                    </a>
-                                    <a href="#" class="google">
-                                        <span class="icon-google mr-3"></span>
-                                    </a>
-                                </div>
                             </form>
                         </div>
                     </div>
