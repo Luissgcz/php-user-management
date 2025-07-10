@@ -1,6 +1,19 @@
 <?php
 // Exemplo básico de View para dashboard de usuários
 
+var_dump($this->data);
+
+
+if (isset($_SESSION['success'])) {
+    echo "<div class='alert alert-success'>{$_SESSION['success']}</div>";
+    unset($_SESSION['success']);
+}
+
+if (isset($_SESSION['error'])) {
+    echo "<div class='alert alert-danger'>{$_SESSION['error']}</div>";
+    unset($_SESSION['error']);
+}
+
 // Mensagens de erro
 if (!empty($this->data['error'])) {
     foreach ($this->data['error'] as $erro) {
@@ -8,39 +21,13 @@ if (!empty($this->data['error'])) {
     }
 }
 
-// Mensagem de sucesso
-if (!empty($this->data['success'])) {
-    echo "<p style='color:green'>{$this->data['success']}</p>";
-}
 ?>
-<link rel="stylesheet" href="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/css/dashboard/dashboard.css" />
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if (!empty($this->data['users']) && is_array($this->data['users'])): ?>
-            <?php foreach ($this->data['users'] as $user): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($user['id']); ?></td>
-                    <td><?php echo htmlspecialchars($user['name']); ?></td>
-                    <td><?php echo htmlspecialchars($user['email']); ?></td>
-                    <td>
-                        <a href="edit-user.php?id=<?php echo $user['id']; ?>">Editar</a> |
-                        <a href="delete-user.php?id=<?php echo $user['id']; ?>" onclick="return confirm('Confirma a exclusão deste usuário?')">Excluir</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <tr>
-                <td colspan="4">Nenhum usuário encontrado.</td>
-            </tr>
-        <?php endif; ?>
-    </tbody>
-</table>
+<form method="POST">
+    <label for="receiver_id">Usuário que vai Receber a Mensagem</label>
+    <input type="text" name="receiver_id" id="receiver_id" placeholder="Usuário que vai Receber a Mensagem">
+
+    <label for="message">Mensagem</label>
+    <input type="text" name="message" id="contentMessage" placeholder="Escreva a Mensagem a Ser Enviada">
+    <input type="submit" value="Enviar Mensagem">
+</form>

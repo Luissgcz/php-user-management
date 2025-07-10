@@ -22,6 +22,9 @@ final class AdmsUsers extends AbstractMigration
                 ->addColumn('password', 'string', ['null' => false])
                 ->addColumn('created_at', 'timestamp')
                 ->addColumn('updated_at', 'timestamp')
+                ->addColumn('image', 'string', ['null' => true])
+                ->addColumn('phone', 'string', ['limit' => 20, 'null' => true])
+                ->addColumn('status', 'enum', ['values' => ['ativo', 'inativo'], 'null' => true, 'default' => 'ativo'])
                 ->create();
         }
     }
