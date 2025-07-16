@@ -22,6 +22,7 @@ if (!empty($this->data['error'])) {
 // Se existirem mensagens...
 $lastMessages = [];
 
+
 //Conversa dos Usuários
 $allMessages = $this->data['conversation'] ?? [];
 
@@ -84,15 +85,23 @@ if ($chatWithUserId) {
                             <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
                                 <div class="p-3 h-100 d-flex flex-column">
                                     <div class="input-group rounded mb-3">
-                                        <input type="search" class="form-control rounded" placeholder="Pesquisar usuário" />
+                                        <input type="search" id="filterForm" class="form-control rounded" placeholder="Pesquisar usuário" />
+                                        <table class="table table-striped">
+                                            <tbody id="userTableContainer">
+                                                <!-- Ajax insere <tr> aqui -->
+                                            </tbody>
+                                        </table>
                                         <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
                                     </div>
 
                                     <div class="chat-user-list flex-grow-1">
                                         <ul class="list-unstyled mb-0">
+
                                             <?php foreach ($lastMessages as $msg):
                                                 $userId = ($loggedUserId === $msg['sender_id']) ? $msg['receiver_id'] : $msg['sender_id'];
                                                 $name = ($loggedUserName === $msg['sender_name']) ? $msg['receiver_name'] : $msg['sender_name'];
+                                                //Formatando a Mensagem lateral paraa ficar Pequena
+                                                // echo $msg['message'];
                                                 $shortMsg = substr($msg['message'], 0, 30) . (strlen($msg['message']) > 30 ? '...' : '');
                                                 $time =  date('H:i', strtotime($msg['created_at']));
                                             ?>
