@@ -28,7 +28,8 @@ class MessageController
             // Carrega histórico de conversa entre os dois
             $this->data['conversation'] = $messageModel->getConversation($userId, $withUserId);
             $this->data['with_user_id'] = $withUserId;
-            $loadView = new LoadViewService('adms/Views/dashboard/userChat', $this->data);
+            $this->data['messages'] = $messageModel->getInbox($userId);
+            $loadView = new LoadViewService('adms/Views/dashboard/dashboard', $this->data);
             $loadView->loadView();
         } else {
             // Se nenhum usuário for especificado, carrega apenas inbox (últimas recebidas)

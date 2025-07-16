@@ -43,9 +43,7 @@ ORDER BY sub.created_at DESC;";
         $stmt = $this->getConnection()->prepare($query);
         $stmt->bindValue(":user_id", $userId, PDO::PARAM_INT);
         $stmt->execute();
-        $teste =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($teste);
-        return $teste;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getConversation(int $userLoggedId, int $userTargetId): array
