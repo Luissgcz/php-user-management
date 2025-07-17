@@ -1,6 +1,6 @@
 <?php if (!empty($this->data['users'])): ?>
     <?php foreach ($this->data['users'] as $user): ?>
-        <tr>
+        <tr class="linha-ajustada">
             <td><?= htmlspecialchars($user['id']) ?></td>
             <td><?= htmlspecialchars($user['name']) ?></td>
             <td><?= htmlspecialchars($user['email']) ?></td>

@@ -85,7 +85,8 @@ if ($chatWithUserId) {
                             <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
                                 <div class="p-3 h-100 d-flex flex-column">
                                     <div class="input-group rounded mb-3">
-                                        <input type="search" id="filterForm" class="form-control rounded" placeholder="Pesquisar usuário" />
+                                        <input type="search" id="filterForm" class="form-control rounded filtro-limitado" placeholder="Pesquisar usuário" />
+
                                         <table class="table table-striped">
                                             <tbody id="userTableContainer">
                                                 <!-- Ajax insere <tr> aqui -->

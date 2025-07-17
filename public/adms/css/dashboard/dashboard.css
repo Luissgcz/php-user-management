@@ -53,3 +53,23 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+.linha-ajustada td {
+  max-width: 200px; /* ou ajuste conforme o layout */
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.linha-ajustada td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
