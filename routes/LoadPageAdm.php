@@ -14,7 +14,7 @@ class LoadPageAdm
     /** @var array $listPhPublic Recebe a lista de paginas publicas */
     private array $listPgPublic = ["Login", "Error403", "NewLogin", "RecoveryPassword", "ResetPassword"];
     /** @var array $listPgPrivate Recebe a lista de paginas privadas */
-    private array $listPgPrivate = ["DashboardChat", "ListUsers", "ViewUser", "CreateUser", "EditUser", "DeleteUser", "EditPassword", "Logout", "FilterUsers", "FilterUsersForSendMsg"];
+    private array $listPgPrivate = ["Dashboard", "ListUsers", "ViewUser", "CreateUser", "EditUser", "DeleteUser", "EditPassword", "Logout", "FilterUsers", "FilterUsersForSendMsg", "MessageController"];
     /** @var array $listDirectory Recebe a Lista de Diretorios com a Controller */
     private array $listDirectory = ["login", "dashboard", "users", "errors", "messages"];
     /** @var array $listPackages Verifica o pacote que contém a Controller */
