@@ -35,7 +35,7 @@ if (isset($_SESSION['error'])) {
                                 <h3>Entrar na Conta</h3>
                                 <p class="mb-4">Faça login para continuar explorando nossos serviços.</p>
                             </div>
-                            <form action="#" method="POST">
+                            <form method="POST">
                                 <input type="hidden" name="csfr_tokens" value="<?php echo CSFRHelper::generateCSFRToken('form_login'); ?>">
                                 <div class="form-group first">
                                     <label for="email"></label>

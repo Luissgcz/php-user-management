@@ -3,6 +3,7 @@
 namespace App\adms\Controller\dashboard;
 
 use App\adms\Models\Repository\MessageRepository;
+use App\adms\Models\Repository\UsersRepository;
 use App\adms\Views\Services\LoadViewService;
 
 class Dashboard
@@ -14,6 +15,8 @@ class Dashboard
     {
         $messageModel = new MessageRepository();
         $userId = $_SESSION['userId'];
+        $userLogin = new UsersRepository();
+        $this->data['userLogin'] =  $userLogin->getUser($userId);
 
 
         $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -29,11 +32,13 @@ class Dashboard
             $this->data['conversation'] = $messageModel->getConversation($userId, $withUserId);
             $this->data['with_user_id'] = $withUserId;
             $this->data['messages'] = $messageModel->getInbox($userId);
+            // var_dump($this->data['messages']);
             $loadView = new LoadViewService('adms/Views/dashboard/dashboard', $this->data);
             $loadView->loadView();
         } else {
             // Se nenhum usuário for especificado, carrega apenas inbox (últimas recebidas)
             $this->data['messages'] = $messageModel->getInbox($userId);
+            // var_dump($this->data['messages']);
             $loadView = new LoadViewService('adms/Views/dashboard/dashboard', $this->data);
             $loadView->loadView();
         }
@@ -55,7 +60,7 @@ class Dashboard
         }
 
         //Corrigido erro de Envios Multiplos
-        header("Location:" . $_ENV['APP_DOMAIN'] . '/message-controller/?with=' . $data['receiver_id']);
+        header("Location:" . $_ENV['APP_DOMAIN'] . '/dashboard/?with=' . $data['receiver_id']);
         exit;
     }
 }

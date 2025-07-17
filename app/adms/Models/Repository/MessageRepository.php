@@ -24,8 +24,10 @@ class MessageRepository extends DbConnection
         $query = "SELECT sub.*
 FROM (
     SELECT m.*,
-           u1.name AS sender_name, -- CORRIGIDO: nome real de quem enviou a mensagem
+           u1.name AS sender_name,
+           u1.image AS sender_image,
            u2.name AS receiver_name,
+           u2.image AS receiver_image,
            LEAST(m.sender_id, m.receiver_id) AS user1,
            GREATEST(m.sender_id, m.receiver_id) AS user2,
            ROW_NUMBER() OVER (
@@ -45,15 +47,17 @@ ORDER BY sub.created_at DESC;";
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
     public function getConversation(int $userLoggedId, int $userTargetId): array
     {
-        $query = "SELECT m.*, u.name as sender_name 
+        $query = "SELECT 
+                m.*, 
+                u.name AS sender_name, 
+                u.image AS sender_image
               FROM messages m
               JOIN ads u ON u.id = m.sender_id
-              WHERE (sender_id = :user_logged AND receiver_id = :user_target)
-                 OR (sender_id = :user_target AND receiver_id = :user_logged)
-              ORDER BY created_at ASC";
+              WHERE (m.sender_id = :user_logged AND m.receiver_id = :user_target)
+                 OR (m.sender_id = :user_target AND m.receiver_id = :user_logged)
+              ORDER BY m.created_at ASC";
 
         $stmt = $this->getConnection()->prepare($query);
         $stmt->bindValue(":user_logged", $userLoggedId, PDO::PARAM_INT);

@@ -3,7 +3,7 @@ $(document).ready(function () {
     const value = $(this).val().trim();
 
     if (value === "") {
-      $("#userTableContainer").empty();
+      $("#userTableFilter").empty();
       return;
     }
 
@@ -12,7 +12,7 @@ $(document).ready(function () {
       method: "GET",
       data: { search: value },
       success: function (res) {
-        $("#userTableContainer").html(res);
+        $("#userTableFilter").html(res);
       },
       error: function () {
         alert("Erro ao carregar usuários");
