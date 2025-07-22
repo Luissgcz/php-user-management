@@ -14,6 +14,7 @@ class UniqueValueRepository extends DbConnection
 
     public function verifyUniqueData($table, $column, $value): bool
     {
+
         $stmt = $this->getConnection()->prepare("select count(*) as count from `{$table}` where `{$column}` = :value");
         $stmt->bindParam(':value', $value);
         $stmt->execute([

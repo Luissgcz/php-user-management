@@ -38,15 +38,21 @@ class LoadPageAdm
     {
         //Eu atribuo o valor da variavel para esse atribudo porque ai consigo utilizar em outros lugares da classe, caso contrario só ia conseguir instanciar nessa função
         $this->urlController = $urlController;
+
+
         // var_dump($this->urlController);
         $this->urlParameter = $urlParameter;
-        if (!$this->checkPageExists()) {
-            //Chamar o Método para Salvar o Log
-            GenerateLog::generateLog("error", "Pagina Não Encontrada", ['pagina' => $this->urlController, 'parametro' => $this->urlParameter]);
-            $_SESSION['error'] = "Acesso não Autorizado";
-            header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
-            exit;
-        }
+
+        //Função ta daando problema no Servidor Apache com Docker, verificar
+        // if (!$this->checkPageExists()) {
+
+        //     //Chamar o Método para Salvar o Log
+        //     GenerateLog::generateLog("error", "Pagina Não Encontrada", ['pagina' => $this->urlController, 'parametro' => $this->urlParameter]);
+        //     $_SESSION['error'] = "Acesso não Autorizado";
+        //     //Meus Arquivos Estaticos do Head estão passando pelo roteamento ai ta dando erro aqui, deixar comentando para resolver posteriormente
+        //     header('Location:' . $_ENV['APP_DOMAIN'] . '/error403'); ##Aqui ta o Problema dessa Merda, antes tava login
+        //     exit;
+        // }
 
 
         if (!$this->checkControllerExists()) {
@@ -63,6 +69,7 @@ class LoadPageAdm
      */
     private function checkPageExists(): bool
     {
+
         // Verifica se Existe a Pagina Existe no Array Public
         if (in_array($this->urlController, $this->listPgPublic)) {
             return true;
@@ -90,7 +97,6 @@ class LoadPageAdm
             //Percorrer o Array De Diretorios depois de acessar o Pacote adms
             foreach ($this->listDirectory as $directory) {
                 $this->classLoad = "\\App\\$package\\Controller\\$directory\\" . $this->urlController;
-
 
                 //Verificar se a Classe Existe
                 if (class_exists($this->classLoad)) {

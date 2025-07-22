@@ -25,7 +25,7 @@ $(document).on("submit", "#formEditUser", function (event) {
   const userId = form.find("#user_id").val();
 
   $.ajax({
-    url: `http://localhost/mvc/edit-user/${userId}`,
+    url: `http://localhost:8080/edit-user/${userId}`,
     method: "POST",
     data: formData,
     dataType: "json",
@@ -65,7 +65,7 @@ $(document).on("submit", "#formDeleteUser", function (event) {
   const userId = form.find("#user_id").val();
 
   $.ajax({
-    url: `http://localhost/mvc/delete-user/${userId}`,
+    url: `http://localhost:8080/delete-user/${userId}`,
     method: "POST",
     data: formData,
     dataType: "json",

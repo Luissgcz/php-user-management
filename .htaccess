@@ -1,20 +1,18 @@
 # Ativa a reescrita de URLs
 RewriteEngine On
-RewriteBase /MVC/
+RewriteBase /
 
 # Bloqueia listagem de diretórios
 Options -Indexes
 
 # Redireciona erro 403 para página personalizada
-ErrorDocument 403 http://localhost/mvc/error403
+ErrorDocument 403 /error403
 
 ######################
 # BLOQUEIOS DE ACESSO
 ######################
 
-# BLOQUEAR ACESSO DIRETO A DIRETÓRIOS SENSÍVEIS
-# (app, vendor, logs, etc.)
-
+# Bloqueia acesso direto a diretórios sensíveis
 RewriteCond %{REQUEST_URI} (^|/)app/ [NC]
 RewriteRule ^ - [F]
 
@@ -23,10 +21,6 @@ RewriteRule ^ - [F]
 
 RewriteCond %{REQUEST_URI} (^|/)logs/ [NC]
 RewriteRule ^ - [F]
-
-# (Exemplo de exceção: para liberar controllers/errors, adicione isso acima do bloqueio de /app/)
-# RewriteCond %{REQUEST_URI} ^/MVC/app/controllers/errors [NC]
-# RewriteRule ^ - [L]
 
 ##########################
 # BLOQUEIO DE ARQUIVOS SENSÍVEIS

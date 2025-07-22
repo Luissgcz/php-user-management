@@ -8,7 +8,7 @@ $(document).ready(function () {
     }
 
     $.ajax({
-      url: "http://localhost/mvc/filter-users-for-send-msg",
+      url: "http://localhost:8080/filter-users-for-send-msg",
       method: "GET",
       data: { search: value },
       success: function (res) {

@@ -1,162 +1,136 @@
-## Requisitos
+# 🧰 Projeto MVC em PHP com Docker
 
-- PHP 8.3 ou superior;
-- Apache;
-- rewrite_module ativo no Apache;
-- MySQL 8.0 ou superior;
-- Composer;
+Este é um projeto desenvolvido com arquitetura MVC em PHP, utilizando Docker para gerenciamento de ambiente e diversas bibliotecas para garantir organização, segurança e facilidade de manutenção.
 
-## Como rodar o projeto baixado
+---
 
-Duplicar o arquivo ".env.example" e renomear para ".env".<br>
-Alterar no arquivo .env as credenciais do banco de dados.<br>
+## ✅ Requisitos
 
-Instalar as dependências.
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
 
+---
+
+## 🚀 Como rodar o projeto com Docker
+
+1. **Clone o repositório:**
+
+```bash
+git clone https://github.com/seu-usuario/seu-repo.git
+cd seu-repo
 ```
+
+2. **Copie o arquivo `.env.example` para `.env`:**
+
+```bash
+cp .env.example .env
+```
+
+3. **Verifique as variáveis de ambiente do banco de dados (no `.env`):**
+
+```env
+DB_HOST=db
+DB_USER=admin
+DB_PASS=admin
+DB_NAME=dblocal
+```
+
+4. **Suba os containers com Docker Compose:**
+
+```bash
+docker-compose up -d --build
+```
+
+5. **Acesse o container da aplicação:**
+
+```bash
+docker exec -it mvc-app bash
+```
+
+6. **Instale as dependências PHP:**
+
+```bash
 composer install
 ```
 
-Executar as migrations.
+7. **Rode as migrations:**
 
-```
+```bash
 vendor/bin/phinx migrate -c database/phinx.php
 ```
 
-Executar as Seeds.
+8. **Rode as seeds (dados iniciais):**
 
-```
+```bash
 vendor/bin/phinx seed:run -c database/phinx.php
 ```
 
-Instalar a Biblioteca para validar o Formulário
+---
+
+## 📦 Tecnologias e bibliotecas utilizadas
+
+- **PHP 8.2**
+- **Docker + Docker Compose**
+- **PostgreSQL ou MySQL (via container)**
+- **Monolog** – Geração de logs
+- **Phinx** – Migrations e seeds versionadas
+- **Dotenv** – Gerenciamento de variáveis de ambiente
+- **Rakit Validation** – Validação de formulários
+
+---
+
+## 🗂️ Estrutura do Projeto
 
 ```
-composer require "rakit/validation"
+📁 app/
+   ├── adms/                  # Módulo principal (ex: controllers, models, views)
+   └── core/                  # Núcleo da aplicação (autoload, config, helpers)
+📁 database/
+   ├── migrations/            # Arquivos de versionamento do banco
+   ├── seeds/                 # Seeds com dados iniciais
+   └── phinx.php              # Configuração do Phinx
+📁 public/                    # Pasta pública acessada pelo navegador
+📁 vendor/                    # Bibliotecas instaladas via Composer
+.env                         # Variáveis de ambiente
+docker-compose.yml           # Orquestração dos containers
+Dockerfile                   # Imagem da aplicação
 ```
 
-## Sequencia para criar o projeto
+---
 
-Criar o arquivo composer.json com a instrução básica.
+## 🐞 Lista de erros personalizados
 
-```
+| Código | Local               | Descrição                   |
+| ------ | ------------------- | --------------------------- |
+| 001    | DbConnection.php    | Erro de conexão com o banco |
+| 002    | LoadPageAdm.php     | Página não encontrada       |
+| 003    | LoadPageAdm.php     | Controller não encontrado   |
+| 004    | LoadPageAdm.php     | Método não encontrado       |
+| 005    | LoadViewService.php | View não encontrada         |
 
-composer init
+---
 
-```
+## ✍️ Autor
 
-Instalar a dependencias Monolog, biblioteca PHP que permite criar arquivo de log.
+Luis Cruz  
+[LinkedIn](https://www.linkedin.com/in/seu-perfil)
 
-```
+---
 
-composer require monolog/monolog
+## 📸 Sugestão para divulgação
 
-```
+Recomenda-se postar no LinkedIn com:
 
-Instalar a biblioteca gerenciar variáveis de ambiente.
+- Print da tela inicial ou da área administrativa
+- Link para o repositório no GitHub
+- Breve descrição das funcionalidades
+- (Opcional) Vídeo curto navegando pela aplicação
 
-```
+---
 
-composer require vlucas/phpdotenv
+## 🧪 Testes e Qualidade
 
-```
+> Ainda não implementado. Próximos passos podem incluir:
 
-Instalar a biblioteca para criar/executar migration e seed.
-
-```
-
-composer require robmorgan/phinx
-
-```
-
-Criar o arquivo "phinx.php" com as configurações e alterar as mesmas.
-
-```
-
-vendor/bin/phinx init -f php
-
-```
-
-Testar as configurações.
-
-```
-
-vendor/bin/phinx test
-
-```
-
-Criar o diretório database.
-
-```
-
-mkdir database/
-
-```
-
-Criar o diretório para migrations.
-
-```
-
-mkdir database/migrations/
-
-```
-
-Criar a migrations.
-
-```
-
-vendor/bin/phinx create AdmsUsers -c database/phinx.php
-
-```
-
-Executar as migrations.
-
-```
-
-vendor/bin/phinx migrate -c database/phinx.php
-
-```
-
-RollBack nas Migrations
-
-```
-
-vendor/bin/phinx rollback -c database/phinx.php
-
-```
-
-Criar Diretorio para os Seeds.
-
-```
-
-mkdir database/seeds
-
-```
-
-Criar a Seed
-
-```
-
-vendor/bin/phinx seed:Create AddAdmsUsers -c database/phinx.php
-
-```
-
-Executar a Seed
-
-```
-
-vendor/bin/phinx seed:run -c database/phinx.php
-
-```
-
-## Lista de erros
-
-001 - DbConnection.php - Erro de conexão com o banco de dados
-002 - LoadPageAdm.php - Não encontrou a página
-003 - LoadPageAdm.php - Não encontrou a controller
-004 - LoadPageAdm.php - Não encontrou o método
-005 - LoadViewService.php - Não encontrou a view
-
-```
-
-```
+- Testes automatizados com PHPUnit
+- Linter de código PHP
+- Análise de cobertura de código

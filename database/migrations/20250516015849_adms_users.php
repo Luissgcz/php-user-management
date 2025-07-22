@@ -18,7 +18,6 @@ final class AdmsUsers extends AbstractMigration
             $table = $this->table('ads');
             $table->addColumn('name', 'string', ['null' => false])
                 ->addColumn('email', 'string', ['null' => false])
-                ->addColumn('username', 'string', ['null' => false])
                 ->addColumn('password', 'string', ['null' => false])
                 ->addColumn('created_at', 'timestamp')
                 ->addColumn('updated_at', 'timestamp')

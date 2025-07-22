@@ -23,7 +23,6 @@ class UniqueRule extends Rule
             $column = $this->parameter('column');
             $table = $this->parameter('table');
 
-
             $verifyUniqueData = new UniqueValueRepository();
             if ($verifyUniqueData->verifyUniqueData($table, $column, $value)) {
                 //Se for Unico, retorna true e deixa cadastrar

@@ -4,7 +4,7 @@ $(document).on("submit", "#filterForm", function (event) {
   const formData = $(this).serialize();
 
   $.ajax({
-    url: "http://localhost/mvc/filter-users",
+    url: "http://localhost:8080/filter-users",
     method: "POST",
     data: formData,
     success: function (res) {
