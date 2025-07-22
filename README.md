@@ -18,7 +18,7 @@ Este é um projeto desenvolvido com arquitetura MVC em PHP, utilizando Docker pa
 git clone https://github.com/Luissgcz/php-user-management
 ```
 
-2. **Copie o arquivo `.env.example` para `.env`:**
+2. **Copie o arquivo `.env.example` para `.env` e Editar as Variaveis:**
 
 ```bash
 cp .env.example .env
