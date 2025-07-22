@@ -16,7 +16,6 @@ Este é um projeto desenvolvido com arquitetura MVC em PHP, utilizando Docker pa
 
 ```bash
 git clone https://github.com/Luissgcz/php-user-management
-cd seu-repo
 ```
 
 2. **Copie o arquivo `.env.example` para `.env`:**
@@ -64,13 +63,13 @@ vendor/bin/phinx seed:run -c database/phinx.php
 - **MySQL**
 - **Apache**
 - **Composer**
+- **Javascript** 
 - **API REST** – Consumida via AJAX pelo frontend
 - **Monolog** – Geração de logs
 - **Phinx** – Migrations e seeds versionadas
 - **Dotenv** – Gerenciamento de variáveis de ambiente
 - **Rakit Validation** – Validação de formulários
 - **Bootstrap 5** – Estilização front-end
-- **Javascript** – Requisições AJAX
 
 
 ---
