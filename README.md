@@ -64,13 +64,13 @@ vendor/bin/phinx seed:run -c database/phinx.php
 - **MySQL**
 - **Apache**
 - **Composer**
+- **Javascript** 
 - **API REST** – Consumida via AJAX pelo frontend
 - **Monolog** – Geração de logs
 - **Phinx** – Migrations e seeds versionadas
 - **Dotenv** – Gerenciamento de variáveis de ambiente
 - **Rakit Validation** – Validação de formulários
 - **Bootstrap 5** – Estilização front-end
-- **Javascript** – Requisições AJAX
 
 
 ---
