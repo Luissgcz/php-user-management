@@ -6,7 +6,7 @@ Este é um projeto desenvolvido com arquitetura MVC em PHP, utilizando Docker pa
 
 ## ✅ Requisitos
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- [Docker](https://www.docker.com/products/docker-desktop)
 
 ---
 
@@ -15,7 +15,7 @@ Este é um projeto desenvolvido com arquitetura MVC em PHP, utilizando Docker pa
 1. **Clone o repositório:**
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
+git clone https://github.com/Luissgcz/php-user-management
 cd seu-repo
 ```
 
@@ -25,40 +25,31 @@ cd seu-repo
 cp .env.example .env
 ```
 
-3. **Verifique as variáveis de ambiente do banco de dados (no `.env`):**
-
-```env
-DB_HOST=db
-DB_USER=admin
-DB_PASS=admin
-DB_NAME=dblocal
-```
-
-4. **Suba os containers com Docker Compose:**
+3. **Suba os containers com Docker Compose:**
 
 ```bash
 docker-compose up -d --build
 ```
 
-5. **Acesse o container da aplicação:**
+4. **Acesse o container da aplicação:**
 
 ```bash
 docker exec -it mvc-app bash
 ```
 
-6. **Instale as dependências PHP:**
+5. **Instale as dependências PHP:**
 
 ```bash
 composer install
 ```
 
-7. **Rode as migrations:**
+6. **Rode as migrations:**
 
 ```bash
 vendor/bin/phinx migrate -c database/phinx.php
 ```
 
-8. **Rode as seeds (dados iniciais):**
+7. **Rode as seeds (dados iniciais):**
 
 ```bash
 vendor/bin/phinx seed:run -c database/phinx.php
@@ -69,30 +60,38 @@ vendor/bin/phinx seed:run -c database/phinx.php
 ## 📦 Tecnologias e bibliotecas utilizadas
 
 - **PHP 8.2**
-- **Docker + Docker Compose**
-- **PostgreSQL ou MySQL (via container)**
+- **Docker**
+- **MySQL**
+- **Apache**
+- **Composer**
+- **API REST** – Consumida via AJAX pelo frontend
 - **Monolog** – Geração de logs
 - **Phinx** – Migrations e seeds versionadas
 - **Dotenv** – Gerenciamento de variáveis de ambiente
 - **Rakit Validation** – Validação de formulários
+- **Bootstrap 5** – Estilização front-end
+- **Javascript** – Requisições AJAX
+
 
 ---
 
 ## 🗂️ Estrutura do Projeto
 
 ```
-📁 app/
-   ├── adms/                  # Módulo principal (ex: controllers, models, views)
-   └── core/                  # Núcleo da aplicação (autoload, config, helpers)
-📁 database/
-   ├── migrations/            # Arquivos de versionamento do banco
-   ├── seeds/                 # Seeds com dados iniciais
-   └── phinx.php              # Configuração do Phinx
-📁 public/                    # Pasta pública acessada pelo navegador
-📁 vendor/                    # Bibliotecas instaladas via Composer
-.env                         # Variáveis de ambiente
-docker-compose.yml           # Orquestração dos containers
-Dockerfile                   # Imagem da aplicação
+📁 app/                      # Código da aplicação (controllers, models, views, etc)
+📁 database/                 # Migrations, seeds e configuração do banco (phinx.php)
+📁 logs/                     # Logs gerados pela aplicação (Monolog)
+📁 public/                   # Pasta pública, serve arquivos estáticos e index.php
+📁 routes/                   # Arquivos de rotas
+📁 src/                      # Código-fonte adicional / classes / serviços
+📁 storage/                  # Arquivos armazenados (upload, cache)
+📁 vendor/                   # Dependências instaladas via Composer
+.env                        # Variáveis de ambiente
+apache.conf                 # Configuração do Apache
+docker-compose.yml          # Orquestração dos containers Docker
+Dockerfile                  # Dockerfile para construir a imagem da aplicação
+index.php                   # Front controller da aplicação
+
 ```
 
 ---
@@ -112,25 +111,6 @@ Dockerfile                   # Imagem da aplicação
 ## ✍️ Autor
 
 Luis Cruz  
-[LinkedIn](https://www.linkedin.com/in/seu-perfil)
+[LinkedIn](https://www.linkedin.com/in/luis-guilherme-cruz-01ba1023a/)
 
 ---
-
-## 📸 Sugestão para divulgação
-
-Recomenda-se postar no LinkedIn com:
-
-- Print da tela inicial ou da área administrativa
-- Link para o repositório no GitHub
-- Breve descrição das funcionalidades
-- (Opcional) Vídeo curto navegando pela aplicação
-
----
-
-## 🧪 Testes e Qualidade
-
-> Ainda não implementado. Próximos passos podem incluir:
-
-- Testes automatizados com PHPUnit
-- Linter de código PHP
-- Análise de cobertura de código
