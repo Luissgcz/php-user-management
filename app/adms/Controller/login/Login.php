@@ -13,7 +13,7 @@ class Login
 
     public function index()
     {
-        $this->data['head'] = 'Login | Sistema CRUD MVC';
+        $this->data['head'] = 'Login';
         $this->data['form'] = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($this->data['form'])) {
             $this->data['error'] = ValidationUserRakitService::validateLogin($this->data['form'] ?? []);

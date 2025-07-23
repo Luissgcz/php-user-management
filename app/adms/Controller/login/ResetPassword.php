@@ -14,7 +14,7 @@ class ResetPassword
     public function index($key)
     {
         $this->key = $key;
-        $this->data['head'] = 'Redefinir Senha | Sistema CRUD MVC';
+        $this->data['head'] = 'Redefinir Senha';
 
         //Primeiraa req vai ser GET então vai pular esse POST, depois vai chamar a view, sem resetar o CSFR token e ai vai validar corretamente
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

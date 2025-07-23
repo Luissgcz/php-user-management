@@ -15,7 +15,7 @@ class RecoveryPassword
 
     public function index()
     {
-        $this->data['head'] = 'Recuperar Senha | Sistema CRUD MVC';
+        $this->data['head'] = 'Recuperar Senha';
         $this->data['form'] = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 
