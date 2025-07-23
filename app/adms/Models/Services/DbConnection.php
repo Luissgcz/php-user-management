@@ -6,6 +6,13 @@ use App\adms\Helpers\GenerateLog;
 use Exception;
 use PDO;
 
+var_dump([
+    'DB_HOST' => getenv('DB_HOST'),
+    'DB_NAME' => getenv('DB_NAME'),
+    'DB_USER' => getenv('DB_USER'),
+    'DB_PASS' => getenv('DB_PASS'),
+    'DB_PORT' => getenv('DB_PORT'),
+]);
 abstract class DbConnection
 {
     private string $dbName = 'dblocal';
@@ -34,6 +41,15 @@ abstract class DbConnection
                 return $this->statusConnection;
             }
         } catch (Exception $err) {
+            var_dump([
+                'DB_HOST' => getenv('DB_HOST'),
+                'DB_NAME' => getenv('DB_NAME'),
+                'DB_USER' => getenv('DB_USER'),
+                'DB_PASS' => getenv('DB_PASS'),
+                'DB_PORT' => getenv('DB_PORT'),
+                'DB_CONNECTION' => $this->statusConnection
+            ]);
+            exit;
             GenerateLog::generateLog('alert', 'Erro ao Se Conectar com o Banco de Dados', ["error" => $err->getMessage()]);
             echo "Erro ao Se Conectar no Banco de Dados";
         }
