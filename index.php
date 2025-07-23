@@ -9,8 +9,9 @@ ob_start(); //Buffer de Saida
 require('./vendor/autoload.php');
 date_default_timezone_set('America/Sao_Paulo');
 
-$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
-$dotenv->load();
+#Comentado para Realizar Deploy da Aplicação
+// $dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
+// $dotenv->load();
 
 $url = new PageController();
 $url->loadPage();
