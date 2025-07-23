@@ -37,9 +37,9 @@
     <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/navbar/bootstrap.bundle.min.js"></script>
 
     <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/navbar/navbar.js"></script>
-    <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/listUsers/modalAction.js"></script>
-    <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/listUsers/filterUsers.js"></script>
-    <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/dashboard/filterUsersMsg.js"></script>
+    <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/listUsers/modalActionv1.js"></script>
+    <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/listUsers/filterUsersv1.js"></script>
+    <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/dashboard/filterUsersMsgv1.js"></script>
 </body>
 
 </html>
