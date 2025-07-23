@@ -1,7 +1,7 @@
 
 # 🧰 Projeto MVC em PHP com Docker
 
-📌 Esta é a **branch principal** do projeto (`master`), destinada ao código-fonte completo e instruções de execução local via Docker.  
+📌 Esta é a **branch principal de Desenvolvimento** do projeto (`dev`), destinada ao código-fonte completo e instruções de execução local via Docker.  
 Para visualizar a versão da aplicação com configurações específicas de produção (deploy), acesse a branch [`deploy`](https://github.com/Luissgcz/php-user-management/tree/deploy).
 
 Este é um projeto completo desenvolvido com arquitetura MVC em PHP, utilizando Docker para gerenciamento do ambiente, além de diversas bibliotecas para garantir organização, segurança e facilidade de manutenção.
@@ -21,7 +21,7 @@ A aplicação conta com autenticação de usuários, chat entre usuários, uploa
 1. **Clone o repositório:**
 
 ```bash
-git clone https://github.com/Luissgcz/php-user-management
+git clone -b dev https://github.com/Luissgcz/php-user-management.git
 ```
 
 2. **Copie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente:**
