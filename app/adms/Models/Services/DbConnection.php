@@ -31,7 +31,6 @@ abstract class DbConnection
                 return $this->statusConnection;
             } else {
                 $this->statusConnection = new PDO("mysql:host=$this->host;dbname=$this->dbName;port=$this->port", $this->user, $this->pass);
-                // echo "Conexao Com o Banco de Dados Realizada com successo";
                 return $this->statusConnection;
             }
         } catch (Exception $err) {

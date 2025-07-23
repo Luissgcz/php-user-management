@@ -1,6 +1,12 @@
+
 # 🧰 Projeto MVC em PHP com Docker
 
-Este é um projeto desenvolvido com arquitetura MVC em PHP, utilizando Docker para gerenciamento de ambiente e diversas bibliotecas para garantir organização, segurança e facilidade de manutenção.
+📌 Esta é a **branch principal** do projeto (`master`), destinada ao código-fonte completo e instruções de execução local via Docker.  
+Para visualizar a versão da aplicação com configurações específicas de produção (deploy), acesse a branch [`deploy`](https://github.com/Luissgcz/php-user-management/tree/deploy).
+
+Este é um projeto completo desenvolvido com arquitetura MVC em PHP, utilizando Docker para gerenciamento do ambiente, além de diversas bibliotecas para garantir organização, segurança e facilidade de manutenção.
+
+A aplicação conta com autenticação de usuários, chat entre usuários, upload de imagens, geração de logs, controle de sessões e muito mais.
 
 ---
 
@@ -18,7 +24,7 @@ Este é um projeto desenvolvido com arquitetura MVC em PHP, utilizando Docker pa
 git clone https://github.com/Luissgcz/php-user-management
 ```
 
-2. **Copie o arquivo `.env.example` para `.env` e Edite as Variaveis de Ambiente:**
+2. **Copie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente:**
 
 ```bash
 cp .env.example .env
@@ -30,28 +36,16 @@ cp .env.example .env
 docker-compose up -d --build
 ```
 
-4. **Acesse o container da aplicação:**
+4. **Execute as migrations:**
 
 ```bash
-docker exec -it mvc-app bash
+docker exec -it mvc-app vendor/bin/phinx migrate -c database/phinx.php
 ```
 
-5. **Instale as dependências PHP:**
+5. **Execute as seeds (dados iniciais):**
 
 ```bash
-composer install
-```
-
-6. **Rode as migrations:**
-
-```bash
-vendor/bin/phinx migrate -c database/phinx.php
-```
-
-7. **Rode as seeds (dados iniciais):**
-
-```bash
-vendor/bin/phinx seed:run -c database/phinx.php
+docker exec -it mvc-app vendor/bin/phinx seed:run -c database/phinx.php
 ```
 
 ---
@@ -65,39 +59,53 @@ vendor/bin/phinx seed:run -c database/phinx.php
 - **Composer**
 - **Javascript**
 - **API REST** – Consumida via AJAX pelo frontend
-- **Monolog** – Geração de logs
+- **Monolog** – Geração de logs da aplicação
 - **Phinx** – Migrations e seeds versionadas
-- **Dotenv** – Gerenciamento de variáveis de ambiente
+- **Dotenv** – Gerenciamento seguro de variáveis de ambiente
 - **Rakit Validation** – Validação de formulários
-- **Bootstrap 5** – Estilização front-end
+- **PHPMailer** – Recuperação de senha por e-mail
+- **Bootstrap 5** – Estilização responsiva do front-end
+
+---
+
+## 💬 Funcionalidades principais
+
+- Autenticação de usuários com CSRF Token e controle de sessão
+- CRUD completo com interface dinâmica via modais (Ajax)
+- Upload de imagem de perfil com tratamento seguro
+- Sistema de **chat entre usuários**
+- Validação de formulários no backend
+- Geração de logs com **Monolog**
+- Deploy com ambiente Docker (Apache + PHP + MySQL)
+- Configuração de servidor com `.htaccess` (URLs amigáveis)
+- Organização de rotas, controllers e views com arquitetura MVC
 
 ---
 
 ## 🗂️ Estrutura do Projeto
 
 ```
-📁 app/                      # Código da aplicação (controllers, models, views, etc)
-📁 database/                 # Migrations, seeds e configuração do banco (phinx.php)
+📁 app/                      # Código principal da aplicação (Controllers, Models, Views)
+📁 database/                 # Migrations, seeds e config do banco (phinx.php)
 📁 logs/                     # Logs gerados pela aplicação (Monolog)
-📁 public/                   # Pasta pública, serve arquivos estáticos e index.php
-📁 routes/                   # Arquivos de rotas
-📁 src/                      # Código-fonte adicional / classes / serviços
-📁 storage/                  # Arquivos armazenados (upload, cache)
-📁 vendor/                   # Dependências instaladas via Composer
-.env                        # Variáveis de ambiente
-apache.conf                 # Configuração do Apache
-docker-compose.yml          # Orquestração dos containers Docker
-Dockerfile                  # Dockerfile para construir a imagem da aplicação
+📁 public/                   # Arquivos públicos (index.php, imagens, etc)
+📁 routes/                   # Definições de rotas da aplicação
+📁 src/                      # Classes auxiliares e serviços
+📁 storage/                  # Arquivos armazenados (uploads, cache)
+📁 vendor/                   # Dependências gerenciadas pelo Composer
+.env                        # Arquivo de variáveis de ambiente
+apache.conf                 # Configuração personalizada do Apache
+docker-compose.yml          # Orquestração dos containers com Docker
+Dockerfile                  # Dockerfile da aplicação
 index.php                   # Front controller da aplicação
-
 ```
 
 ---
 
-## 🐞 Lista de erros personalizados
+## 🐞 Códigos de erro personalizados
 
-| Código | Local               | Descrição                   |
-| ------ | ------------------- | --------------------------- |
+| Código | Arquivo             | Descrição                   |
+|--------|---------------------|-----------------------------|
 | 001    | DbConnection.php    | Erro de conexão com o banco |
 | 002    | LoadPageAdm.php     | Página não encontrada       |
 | 003    | LoadPageAdm.php     | Controller não encontrado   |
@@ -108,7 +116,5 @@ index.php                   # Front controller da aplicação
 
 ## ✍️ Autor
 
-Luis Cruz  
-[LinkedIn](https://www.linkedin.com/in/luis-guilherme-cruz-01ba1023a/)
-
----
+**Luis Cruz**  
+🔗 [LinkedIn](https://www.linkedin.com/in/luis-guilherme-cruz-01ba1023a/)

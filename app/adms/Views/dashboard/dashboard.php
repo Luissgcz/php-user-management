@@ -19,11 +19,7 @@ if (!empty($this->data['error'])) {
 }
 
 
-
-
-// Se existirem mensagens...
 $lastMessages = [];
-
 
 //Conversa dos Usuários
 $allMessages = $this->data['conversation'] ?? [];
@@ -31,7 +27,6 @@ $allMessages = $this->data['conversation'] ?? [];
 //Barra Lateral das Ultimas Mensagens dos Usuário
 $usersMessages = $this->data['messages'] ?? [];
 
-// var_dump($this->data['messages']);
 foreach ($allMessages as $msg) {
     $senderId = $msg['sender_id'];
     if (!isset($lastMessages[$senderId]) && $senderId !== $loggedUserId) {
@@ -39,7 +34,6 @@ foreach ($allMessages as $msg) {
     }
 }
 
-// var_dump($usersMessages);
 
 foreach ($usersMessages as $msg) {
     $senderId = $msg['sender_id'];
@@ -56,10 +50,7 @@ foreach ($usersMessages as $msg) {
 
 
 
-// var_dump($lastMessages);
-
-
-// Pegando mensagens com um usuário específico (se estiver em uma conversa)
+// GET nas Conversas do Usuário
 $chatWithUserId = $_GET['with'] ?? null;
 $conversation = [];
 
@@ -72,7 +63,6 @@ if ($chatWithUserId) {
             $conversation[] = $msg;
         }
     }
-    // var_dump($conversation);
 }
 ?>
 
@@ -91,7 +81,7 @@ if ($chatWithUserId) {
 
                                         <table class="table table-striped">
                                             <tbody id="userTableFilter">
-                                                <!-- Ajax insere <tr> aqui -->
+                                                <!-- REQ AJAX  -->
                                             </tbody>
                                         </table>
                                         <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
@@ -103,8 +93,6 @@ if ($chatWithUserId) {
                                             <?php foreach ($lastMessages as $msg):
                                                 $userId = ($loggedUserId === $msg['sender_id']) ? $msg['receiver_id'] : $msg['sender_id'];
                                                 $name = ($loggedUserName === $msg['sender_name']) ? $msg['receiver_name'] : $msg['sender_name'];
-                                                //Formatando a Mensagem lateral paraa ficar Pequena
-                                                // echo $msg['message'];
                                                 $shortMsg = substr($msg['message'], 0, 30) . (strlen($msg['message']) > 30 ? '...' : '');
                                                 $time =  date('H:i', strtotime($msg['created_at']));
                                                 $image = ($loggedUserId === $msg['sender_id']) ? $msg['receiver_image'] : $msg['sender_image'];

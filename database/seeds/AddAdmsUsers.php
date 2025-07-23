@@ -11,10 +11,8 @@ class AddAdmsUsers extends AbstractSeed
      */
     public function run(): void
     {
-        // Variável para Receber os Dados
         $data = [];
 
-        // Lista de 30 usuários
         $users = [
             ['name' => 'Luis Cruz', 'email' => 'luis@gmail.com'],
             ['name' => 'Kelly Cruz', 'email' => 'kelly@gmail.com'],
@@ -48,7 +46,6 @@ class AddAdmsUsers extends AbstractSeed
             ['name' => 'Camila Duarte', 'email' => 'camila@gmail.com'],
         ];
 
-        // Verificar e montar os dados a serem inseridos
         foreach ($users as $user) {
             $existingRecord = $this->query(
                 'SELECT * FROM ads WHERE email=:email',
@@ -65,10 +62,8 @@ class AddAdmsUsers extends AbstractSeed
             }
         }
 
-        // Indicar em qual tabela salvar os registros
         $adms_users = $this->table('ads');
 
-        // Inserir os registros na tabela
         if (!empty($data)) {
             $adms_users->insert($data)->save();
         }

@@ -28,7 +28,7 @@ class FilterUsersForSendMsg extends DbConnection
             $stmt->execute($params);
             $this->data['users'] = $stmt->fetchAll();
 
-            // Carrega apenas um trecho da interface (lista de usuários)
+            // Carregando Apenas uma Parte
             $loadView = new LoadViewService("adms/Views/dashboard/userTablePartial", $this->data);
             $loadView->loadPartialView();
             return;

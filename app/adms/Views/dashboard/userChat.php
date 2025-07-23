@@ -1,5 +1,5 @@
 <?php
-// Renderizando a Conversa Inteira Já
+// Renderizando a Conversa Inteira 
 if (isset($this->data['conversation'])) {
     extract($this->data);
     foreach ($conversation as $msg) {

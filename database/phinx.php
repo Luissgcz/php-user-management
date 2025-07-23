@@ -1,13 +1,11 @@
 <?php
 
-//Carregar o Composer
 require(__DIR__ . '/../vendor/autoload.php');
 
 
 $dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__ . '/..');
 $dotenv->load();
 
-//Definir Fuso Horario do Aplicação
 date_default_timezone_set($_ENV['APP_TIMEZONE']);
 
 return

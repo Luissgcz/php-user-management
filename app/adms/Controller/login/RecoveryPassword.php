@@ -29,8 +29,7 @@ class RecoveryPassword
                     $key = GenerateKeyRecovery::GenerateKeyRecoveryPassword();
                     $serviceRepository->insertDataRecovery($this->data['form']['email'], $key, date("Y-m-d H:i:s", strtotime("+30 minutes")));
                     SendEmail::SendEmailRecoveryPassword($key, $this->data['form']['email'], $resultEmail['name']);
-                    // $_SESSION['emailRecoveryPassword'] = $resultEmail['email'];
-                    // var_dump($_SESSION);
+
                     $_SESSION['success'] = 'Email de Recuperação Enviado';
                     header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
                     exit;

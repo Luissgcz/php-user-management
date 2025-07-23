@@ -57,12 +57,6 @@ class ResetPassword
             $alterPassword = new RecoveryPasswordRepository();
             $hashPassword = password_hash($this->data['form']['password'], PASSWORD_DEFAULT);
 
-            // if (!isset($_SESSION['emailRecoveryPassword'])) {
-            //     $_SESSION['error'] = 'Sessão expirada. Solicite uma nova recuperação de senha.';
-            //     header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
-            //     exit;
-            // }
-
             $result = $alterPassword->alterPassword($this->key, $hashPassword);
             if ($result) {
                 $_SESSION['success'] = 'Senha Alterada com successo';

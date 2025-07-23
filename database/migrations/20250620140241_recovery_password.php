@@ -21,8 +21,6 @@ final class RecoveryPassword extends AbstractMigration
     {
         if ($this->hasTable('ads')) {
             $table = $this->table('ads');
-            //Adicionar Indices Unicos as Colunas email e username
-            // 'name' => 'idx_unique_username||email' - Nomea o Indice Unico
             $table->addColumn('recovery_password', 'string', [
                 'null' => true,
                 'after' => 'password'
@@ -39,9 +37,7 @@ final class RecoveryPassword extends AbstractMigration
     public function down(): void
     {
         if ($this->hasTable('ads')) {
-            //Apagar a tabela AMDS_USERS
             $this->table('ads')->removeColumn('validate_recovery_password')->removeColumn('recovery_password')->update();
-            // $this->table('ads')->drop()->save();
         }
     }
 }

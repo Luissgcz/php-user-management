@@ -13,7 +13,6 @@ class Login
 
     public function index()
     {
-        // var_dump($_SESSION);
         $this->data['head'] = 'Login | Sistema CRUD MVC';
         $this->data['form'] = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($this->data['form'])) {
@@ -29,7 +28,6 @@ class Login
                     header('Location:' . $_ENV['APP_DOMAIN'] . '/dashboard');
                     exit;
                 } else {
-                    // echo "Erro ao Logar no Sistema<br>";
                     $_SESSION['error'] = 'Usuário ou Senha Incorreta';
                 }
             }

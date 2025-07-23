@@ -36,14 +36,12 @@ class LoadPageAdm
 
     public function loadPageAdm(string|null $urlController, string|null $urlParameter): void
     {
-        //Eu atribuo o valor da variavel para esse atribudo porque ai consigo utilizar em outros lugares da classe, caso contrario só ia conseguir instanciar nessa função
         $this->urlController = $urlController;
 
 
-        // var_dump($this->urlController);
         $this->urlParameter = $urlParameter;
 
-        //Função ta daando problema no Servidor Apache com Docker, verificar
+
         // if (!$this->checkPageExists()) {
 
         //     //Chamar o Método para Salvar o Log
@@ -69,13 +67,10 @@ class LoadPageAdm
      */
     private function checkPageExists(): bool
     {
-
-        // Verifica se Existe a Pagina Existe no Array Public
         if (in_array($this->urlController, $this->listPgPublic)) {
             return true;
         }
 
-        // Verifica se Existe a Pagina no Array Private
         if (in_array($this->urlController, $this->listPgPrivate) && isset($_SESSION['user'])) {
             return true;
         } else {
@@ -91,23 +86,16 @@ class LoadPageAdm
 
     private function checkControllerExists(): bool
     {
-        //Percorrer o Array de Pacotes
         foreach ($this->listPackages as $package) {
 
-            //Percorrer o Array De Diretorios depois de acessar o Pacote adms
             foreach ($this->listDirectory as $directory) {
                 $this->classLoad = "\\App\\$package\\Controller\\$directory\\" . $this->urlController;
 
-                //Verificar se a Classe Existe
                 if (class_exists($this->classLoad)) {
-                    // var_dump($package, $directory);
                     $this->loadMethod();
-                    // var_dump($this->classLoad);
                     return true;
                 }
             }
-
-            // return true;
         }
         return false;
     }
@@ -120,13 +108,10 @@ class LoadPageAdm
     {
         //Instanciar a Classe
         $classLoad = new $this->classLoad();
-        // var_dump($classLoad);
         if (method_exists($classLoad, "index")) {
-            //Carrega o Método
             $classLoad->{'index'}($this->urlParameter);
         } else {
             GenerateLog::generateLog("error", 'Método Não Encontrada', ['pagina' => $this->urlController, 'parametro' => $this->urlParameter, 'metodo' => $classLoad]);
-            //Pausa o Processamento
             die('Método Não Encontrada');
         }
     }

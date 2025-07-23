@@ -31,7 +31,6 @@ class CSFRHelper
     public static function validateCSFRToken(string $formIdentifier, string $token)
     {
         if (isset($_SESSION['csfr_tokens'][$formIdentifier]) && hash_equals($_SESSION['csfr_tokens'][$formIdentifier], $token)) {
-            //Token Usado Deve Ser Invalidado
             unset($_SESSION['csfr_tokens'][$formIdentifier]);
 
             return true;

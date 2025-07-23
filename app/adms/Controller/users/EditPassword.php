@@ -30,12 +30,10 @@ class EditPassword
             if (empty($this->data['error'])) {
                 if (isset($this->data['form']) && CSFRHelper::validateCSFRToken('form_update_password', $this->data['form']['csfr_tokens'])) {
 
-                    // Comparando Senha Atual do Banco com Senha Atual da View
+              
                     if (password_verify($this->data['form']['passwordCurrent'], $passwordHash)) {
-                        // Hash da nova Senha
                         $hashPassword = password_hash($this->data['form']['newPassword'], PASSWORD_DEFAULT);
 
-                        // Atualiza a senha no banco
                         if ($editPassword->updatePassword($id, $hashPassword, time())) {
                             $_SESSION['success'] = 'Senha alterada com sucesso.';
                             header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
