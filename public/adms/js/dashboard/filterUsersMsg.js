@@ -6,7 +6,6 @@ $(document).ready(function () {
       $("#userTableFilter").empty();
       return;
     }
-
     $.ajax({
       url: "http://localhost:8080/filter-users-for-send-msg",
       method: "GET",

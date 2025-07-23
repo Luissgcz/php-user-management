@@ -33,7 +33,6 @@ RewriteRule ^ - [F]
 ##########################
 # URL AMIGÁVEL MVC
 ##########################
-
 # Se o arquivo ou diretório não existir, redireciona para index.php
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
