@@ -8,12 +8,12 @@ use PDO;
 
 abstract class DbConnection
 {
-    private string $dbName = 'dblocal';
-    private string $user = 'admin';
-    private string $pass = 'admin';
-    private string $host = 'localhost';
-    private int $port = 3306;
-    private object|null $statusConnection = null;
+    private string $dbName;
+    private string $user;
+    private string $pass;
+    private string $host;
+    private int $port;
+    private ?object $statusConnection = null;
 
     public function __construct()
     {
