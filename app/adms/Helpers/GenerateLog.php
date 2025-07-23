@@ -10,32 +10,22 @@ use Monolog\Handler\StreamHandler;
 
 class GenerateLog
 {
-
-    public static function generateLog(string $level,  string $message, array|null $content): void
+    public static function generateLog(string $level, string $message, array|null $content): void
     {
-        //Criar o Logger
-        $log = new Logger('name');
+        $log = new Logger('app');
 
-        //Obter a Data Atual dos Logs no formato ddmmyyyy
-        $nameFileLog = date('dmY') . ".log";
+        $logDir = __DIR__ . '/../../../../logs';
 
-        //Criar o Caminho dos Logs
-        $filePath = 'logs/' . $nameFileLog;
-
-        //Verificar se o Arquivo Existe
-        if (!file_exists($filePath)) {
-            //Abrir o Arquivo para Escrita
-            $fileOpen = fopen($filePath, 'w');
-
-            //Fechar o Arquivo
-            fclose($fileOpen);
+        if (!is_dir($logDir)) {
+            mkdir($logDir, 0777, true);
         }
 
+        $nameFileLog = date('dmY') . ".log";
+        $filePath = $logDir . '/' . $nameFileLog;
 
-        //Utilizar o StreamHandler para salvar o log no arquivo
+
         $log->pushHandler(new StreamHandler($filePath, Level::Debug));
 
-        //Salvar o Log no Arquivo
-        $log->$level($message, $content);
+        $log->$level($message, $content ?? []);
     }
 }

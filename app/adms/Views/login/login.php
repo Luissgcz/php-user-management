@@ -25,7 +25,7 @@ if (isset($_SESSION['error'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="<?php echo $_ENV['APP_DOMAIN'] ?>/public/adms/images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
+                    <img src="/public/adms/images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
                 </div>
                 <div class="col-md-6 contents">
                     <div class="row justify-content-center">
