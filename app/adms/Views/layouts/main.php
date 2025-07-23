@@ -16,8 +16,8 @@
         <div class="header_user">
             <p><?php echo $_SESSION['user'] ??  "" ?></p>
             <div class="header_img">
-                <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/view-user/<?php echo $_SESSION['userId'] ?>">
-                    <img src="<?php echo $_ENV['APP_DOMAIN'] ?>/storage/uploads/profile/<?php echo $this->data['userLogin']['image'] ?? 'default.png' ?>" alt="UserIMG">
+                <a href="<?php echo getenv('APP_DOMAIN'); ?>/view-user/<?php echo $_SESSION['userId'] ?>">
+                    <img src="<?php echo getenv('APP_DOMAIN') ?>/storage/uploads/profile/<?php echo $this->data['userLogin']['image'] ?? 'default.png' ?>" alt="UserIMG">
                 </a>
             </div>
         </div>
@@ -36,13 +36,13 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <!-- Bootstrap Bundle (JS + Popper) -->
-    <script src="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/js/navbar/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/navbar/bootstrap.bundle.min.js"></script>
 
     <!-- Seus scripts -->
-    <script src="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/js/navbar/navbar.js"></script>
-    <script src="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/js/listUsers/modalAction.js"></script>
-    <script src="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/js/listUsers/filterUsers.js"></script>
-    <script src="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/js/dashboard/filterUsersMsg.js"></script>
+    <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/navbar/navbar.js"></script>
+    <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/listUsers/modalAction.js"></script>
+    <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/listUsers/filterUsers.js"></script>
+    <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/dashboard/filterUsersMsg.js"></script>
 </body>
 
 </html>

@@ -33,7 +33,7 @@ class ResetPassword
         $result =  $validation->validateResetPass($this->key);
         if (!$result) {
             $_SESSION['error'] = 'Chave de Recuperação Inválida';
-            header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
+            header('Location:' . getenv('APP_DOMAIN') . '/login');
             exit;
         }
 
@@ -42,7 +42,7 @@ class ResetPassword
 
         if ($dateNow > $expireData) {
             $_SESSION['error'] = 'Código Expirado';
-            header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
+            header('Location:' . getenv('APP_DOMAIN') . '/login');
             exit;
         }
 
@@ -59,18 +59,18 @@ class ResetPassword
 
             // if (!isset($_SESSION['emailRecoveryPassword'])) {
             //     $_SESSION['error'] = 'Sessão expirada. Solicite uma nova recuperação de senha.';
-            //     header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
+            //     header('Location:' . getenv('APP_DOMAIN') . '/login');
             //     exit;
             // }
 
             $result = $alterPassword->alterPassword($this->key, $hashPassword);
             if ($result) {
                 $_SESSION['success'] = 'Senha Alterada com successo';
-                header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
+                header('Location:' . getenv('APP_DOMAIN') . '/login');
                 exit;
             } else {
                 $_SESSION['error'] = 'Não foi Possivel Alterar Sua Senha, Por Favor Tente Novamente';
-                header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
+                header('Location:' . getenv('APP_DOMAIN') . '/login');
                 exit;
             }
         }

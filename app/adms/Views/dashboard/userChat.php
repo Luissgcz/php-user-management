@@ -7,7 +7,7 @@ if (isset($this->data['conversation'])) {
     }
 ?>
 
-    <form action="<?= $_ENV['APP_DOMAIN'] . '/message-controller/?with=' . $with_user_id ?>" method="POST">
+    <form action="<?= getenv('APP_DOMAIN') . '/message-controller/?with=' . $with_user_id ?>" method="POST">
         <input type="hidden" name="receiver_id" value="<?= $with_user_id ?>">
         <textarea name="message" required></textarea>
         <button type="submit">Enviar</button>

@@ -17,11 +17,11 @@ abstract class DbConnection
 
     public function __construct()
     {
-        $this->dbName = $_ENV['DB_NAME'];
-        $this->user = $_ENV['DB_USER'];
-        $this->pass = $_ENV['DB_PASS'];
-        $this->host = $_ENV['DB_HOST'];
-        $this->port = $_ENV['DB_PORT'];
+        $this->dbName = getenv('DB_NAME');
+        $this->user = getenv('DB_USER');
+        $this->pass = getenv('DB_PASS');
+        $this->host = getenv('DB_HOST');
+        $this->port = getenv('DB_PORT');
     }
 
     public function getConnection()
@@ -31,7 +31,6 @@ abstract class DbConnection
                 return $this->statusConnection;
             } else {
                 $this->statusConnection = new PDO("mysql:host=$this->host;dbname=$this->dbName;port=$this->port", $this->user, $this->pass);
-                // echo "Conexao Com o Banco de Dados Realizada com successo";
                 return $this->statusConnection;
             }
         } catch (Exception $err) {

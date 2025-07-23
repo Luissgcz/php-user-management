@@ -117,7 +117,7 @@ if ($chatWithUserId) {
                                                         <div class="d-flex flex-row">
                                                             <div class="position-relative">
 
-                                                                <img src="<?php echo $_ENV['APP_DOMAIN']; ?>/storage/uploads/profile/<?php echo $image ?? 'default.png'; ?>" class="chat-avatar me-3" />
+                                                                <img src="<?php echo getenv('APP_DOMAIN'); ?>/storage/uploads/profile/<?php echo $image ?? 'default.png'; ?>" class="chat-avatar me-3" />
                                                                 <span class="badge bg-success badge-dot"></span>
                                                             </div>
                                                             <div class="pt-1">
@@ -153,12 +153,12 @@ if ($chatWithUserId) {
                                                         </p>
                                                         <p class="small text-muted"><?= $formattedTime ?></p>
                                                     </div>
-                                                    <img src="<?php echo $_ENV['APP_DOMAIN']; ?>/storage/uploads/profile/<?php echo $this->data['userLogin']['image'] ?? 'default.png'; ?>" class="chat-avatar ms-2" />
+                                                    <img src="<?php echo getenv('APP_DOMAIN'); ?>/storage/uploads/profile/<?php echo $this->data['userLogin']['image'] ?? 'default.png'; ?>" class="chat-avatar ms-2" />
                                                 </div>
                                             <?php else: ?>
                                                 <!-- Mensagem recebida -->
                                                 <div class="d-flex flex-row justify-content-start mb-3">
-                                                    <img src="<?php echo $_ENV['APP_DOMAIN']; ?>/storage/uploads/profile/<?php echo $msg['sender_image'] ?? 'default.png'; ?>" class="chat-avatar me-2" />
+                                                    <img src="<?php echo getenv('APP_DOMAIN'); ?>/storage/uploads/profile/<?php echo $msg['sender_image'] ?? 'default.png'; ?>" class="chat-avatar me-2" />
                                                     <div>
                                                         <p class="small p-2 mb-1 rounded-3 bg-body-tertiary">
                                                             <?= htmlspecialchars($msg['message']) ?>
@@ -176,7 +176,7 @@ if ($chatWithUserId) {
                                 <!-- Rodapé -->
                                 <form method="POST" class="chat-footer d-flex align-items-center gap-2 mt-3">
                                     <input type="hidden" name="receiver_id" value="<?= $chatWithUserId ?>">
-                                    <img src="<?php echo $_ENV['APP_DOMAIN']; ?>/storage/uploads/profile/<?php echo $this->data['userLogin']['image'] ?? 'default.png'; ?>" class="chat-avatar" />
+                                    <img src="<?php echo getenv('APP_DOMAIN'); ?>/storage/uploads/profile/<?php echo $this->data['userLogin']['image'] ?? 'default.png'; ?>" class="chat-avatar" />
                                     <input type="text" name="message" class="form-control" placeholder="Escreva uma mensagem" required />
                                     <button type="submit" class="btn btn-primary">Enviar<i class="fas fa-paper-plane"></i></button>
                                 </form>

@@ -26,7 +26,7 @@ class Login
                 $result = $serviceDv->authUser($this->data['form']['email'], $this->data['form']['password']);
 
                 if ($result) {
-                    header('Location:' . $_ENV['APP_DOMAIN'] . '/dashboard');
+                    header('Location:' . getenv('APP_DOMAIN')  . '/dashboard');
                     exit;
                 } else {
                     // echo "Erro ao Logar no Sistema<br>";

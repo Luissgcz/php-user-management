@@ -17,22 +17,22 @@ class SendEmail
             // Server settings
             $mail->isSMTP();
             $mail->CharSet = 'UTF-8';
-            $mail->Host       = $_ENV['SERV_HOST'];
+            $mail->Host       = getenv('SERV_HOST');
             $mail->SMTPAuth   = true;
-            $mail->Username   = $_ENV['SERV_EMAIL'];
-            $mail->Password   = $_ENV['SERV_PASS'];
+            $mail->Username   = getenv('SERV_EMAIL');
+            $mail->Password   = getenv('SERV_PASS');
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = $_ENV['SERV_PORT'];
+            $mail->Port       = getenv('SERV_PORT');
 
             // Recipients
-            $mail->setFrom($_ENV['SERV_EMAIL'], $_ENV['SERV_NAME']);
+            $mail->setFrom(getenv('SERV_EMAIL'), getenv('SERV_NAME'));
             $mail->addAddress($email, $name);
 
             // Content
             $mail->isHTML(true);
             $mail->Subject = 'Solicitação de Recuperação de Senha';
 
-            $link = $_ENV['APP_DOMAIN'] . '/reset-password/' . $code;
+            $link = getenv('APP_DOMAIN') . '/reset-password/' . $code;
 
             $mail->Body = '
             <html>
@@ -78,11 +78,11 @@ class SendEmail
 
             $mail->send();
             $_SESSION['success'] = 'Mensagem Enviada com successo';
-            header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
+            header('Location:' . getenv('APP_DOMAIN') . '/login');
         } catch (Exception $err) {
             GenerateLog::generateLog('error', 'Não foi Possivel Enviar o Email de Recuperação', ["error" => $err->getMessage()]);
             $_SESSION['error'] = 'Erro ao Enviar Email de Recuperação';
-            header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
+            header('Location:' . getenv('APP_DOMAIN') . '/login');
         }
     }
 }

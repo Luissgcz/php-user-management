@@ -11,6 +11,6 @@ class Logout
         unset($_SESSION['user']);
         unset($_SESSION['userId']);
         $_SESSION['success'] = 'Deslogado com successo';
-        header('Location:' . $_ENV['APP_DOMAIN']);
+        header('Location:' . getenv('APP_DOMAIN'));
     }
 }

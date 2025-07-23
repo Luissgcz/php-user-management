@@ -38,21 +38,21 @@ class EditPassword
                         // Atualiza a senha no banco
                         if ($editPassword->updatePassword($id, $hashPassword, time())) {
                             $_SESSION['success'] = 'Senha alterada com sucesso.';
-                            header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
+                            header('Location:' . getenv('APP_DOMAIN') . '/list-users');
                             exit;
                         } else {
                             $_SESSION['error'] = 'Erro ao alterar a senha do usuário.';
-                            header('Location:' . $_ENV['APP_DOMAIN'] . '/edit-password');
+                            header('Location:' . getenv('APP_DOMAIN') . '/edit-password');
                             exit;
                         }
                     } else {
                         $_SESSION['error'] = 'Senha atual incorreta';
-                        header('Location:' . $_ENV['APP_DOMAIN'] . '/edit-password');
+                        header('Location:' . getenv('APP_DOMAIN') . '/edit-password');
                         exit;
                     }
                 } else {
                     $_SESSION['error'] = 'Acesso inválido ao tentar alterar a senha.';
-                    header('Location:' . $_ENV['APP_DOMAIN'] . '/edit-password');
+                    header('Location:' . getenv('APP_DOMAIN') . '/edit-password');
                     exit;
                 }
             }

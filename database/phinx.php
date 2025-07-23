@@ -8,7 +8,7 @@ $dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__ . '/..');
 $dotenv->load();
 
 //Definir Fuso Horario do Aplicação
-date_default_timezone_set($_ENV['APP_TIMEZONE']);
+date_default_timezone_set(getenv('APP_TIMEZONE'));
 
 return
     [
@@ -18,32 +18,32 @@ return
         ],
         'environments' => [
             'default_migration_table' => 'phinxlog',
-            'default_environment' => $_ENV['APP_ENV'],
+            'default_environment' => getenv('APP_ENV'),
             'production' => [
                 'adapter' => 'mysql',
-                'host' => $_ENV['DB_HOST_PHINX'],
-                'name' => $_ENV['DB_NAME_PHINX'],
-                'user' => $_ENV['DB_USER_PHINX'],
-                'pass' => $_ENV['DB_PASS_PHINX'],
-                'port' => $_ENV['DB_PORT_PHINX'],
+                'host' => getenv('DB_HOST_PHINX'),
+                'name' => getenv('DB_NAME_PHINX')],
+                'user' => getenv('DB_USER_PHINX'),
+                'pass' => getenv('DB_PASS_PHINX'),
+                'port' => getenv('DB_PORT_PHINX'),
                 'charset' => 'utf8',
             ],
             'development' => [
                 'adapter' => 'mysql',
-                'host' => $_ENV['DB_HOST_PHINX'],
-                'name' => $_ENV['DB_NAME_PHINX'],
-                'user' => $_ENV['DB_USER_PHINX'],
-                'pass' => $_ENV['DB_PASS_PHINX'],
-                'port' => $_ENV['DB_PORT_PHINX'],
+                'host' => getenv('DB_HOST_PHINX'),
+                'name' => getenv('DB_NAME_PHINX'),
+                'user' => getenv('DB_USER_PHINX'),
+                'pass' => getenv('DB_PASS_PHINX'),
+                'port' => getenv('DB_PORT_PHINX'),
                 'charset' => 'utf8',
             ],
             'testing' => [
                 'adapter' => 'mysql',
-                'host' => $_ENV['DB_HOST_PHINX'],
-                'name' => $_ENV['DB_NAME_PHINX'],
-                'user' => $_ENV['DB_USER_PHINX'],
-                'pass' => $_ENV['DB_PASS_PHINX'],
-                'port' => $_ENV['DB_PORT_PHINX'],
+                'host' => getenv('DB_HOST_PHINX'),
+                'name' => getenv('DB_NAME_PHINX'),
+                'user' => getenv('DB_USER_PHINX'),
+                'pass' => getenv('DB_PASS_PHINX'),
+                'port' => getenv('DB_PORT_PHINX'),
                 'charset' => 'utf8',
             ]
         ],

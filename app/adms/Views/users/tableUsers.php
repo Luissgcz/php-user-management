@@ -7,7 +7,7 @@ if (!empty($this->data['users'])) :
     $csrfEditUser = CSFRHelper::generateCSFRToken('form_edit_user');
     $csrfDeleteUser = CSFRHelper::generateCSFRToken('form_delete_user');
 ?>
-    <link rel="stylesheet" href="<?php echo $_ENV['APP_DOMAIN']; ?>/public/adms/css/listUsers/listUsers.css" />
+    <link rel="stylesheet" href="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/css/listUsers/listUsers.css" />
     <table class="table user-list">
         <thead>
             <tr>
@@ -24,12 +24,12 @@ if (!empty($this->data['users'])) :
             ?>
                 <tr>
                     <td>
-                        <img src="<?php echo $_ENV['APP_DOMAIN']; ?>/storage/uploads/profile/<?php echo $image ?? 'default.png'; ?>"
+                        <img src="<?php echo getenv('APP_DOMAIN'); ?>/storage/uploads/profile/<?php echo $image ?? 'default.png'; ?>"
                             alt="Foto de Perfil"
                             class="rounded-circle"
                             style="width: 30px; height: 30px; object-fit: cover; border: none; padding: 0;">
 
-                        <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/view-user/<?php echo $user['id']; ?>" class="user-link"><?php echo $name; ?></a>
+                        <a href="<?php echo getenv('APP_DOMAIN'); ?>/view-user/<?php echo $user['id']; ?>" class="user-link"><?php echo $name; ?></a>
 
                     </td>
                     <td><?php echo $created_at; ?></td>

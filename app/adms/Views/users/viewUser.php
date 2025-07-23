@@ -18,7 +18,7 @@ if (!empty($this->data['user'])) {
     extract($this->data['user']);
 } else {
     $_SESSION['error'] = 'Usuário não encontrado.';
-    header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
+    header('Location:' . getenv('APP_DOMAIN') . '/list-users');
     return;
 }
 ?>
@@ -34,7 +34,7 @@ if (!empty($this->data['user'])) {
                 <div class="card-body">
                     <!-- Foto de Perfil -->
                     <div class="text-center mb-4">
-                        <img src="<?php echo $_ENV['APP_DOMAIN']; ?>/storage/uploads/profile/<?php echo $image ?? 'default.png'; ?>"
+                        <img src="<?php echo getenv('APP_DOMAIN'); ?>/storage/uploads/profile/<?php echo $image ?? 'default.png'; ?>"
                             alt="Foto de Perfil" class="rounded-circle img-thumbnail"
                             style="width: 120px; height: 120px; object-fit: cover;">
 
@@ -92,7 +92,7 @@ if (!empty($this->data['user'])) {
                 </div>
 
                 <div class="card-footer bg-light text-center">
-                    <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/list-users" class="btn btn-outline-secondary">
+                    <a href="<?php echo getenv('APP_DOMAIN'); ?>/list-users" class="btn btn-outline-secondary">
                         Voltar para Lista
                     </a>
                 </div>

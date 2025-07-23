@@ -5,7 +5,7 @@
 if (($this->data['pagination']['last_page'] ?? false) && $this->data['pagination']['last_page'] != 1) {
     $totalPages = $this->data['pagination']['last_page'];
     $currentPage = $this->data['pagination']['current_page'] ?? 1;
-    $baseUrl = $_ENV['APP_DOMAIN'] . '/' . ($this->data['pagination']['url_controller'] ?? '');
+    $baseUrl = getenv('APP_DOMAIN') . '/' . ($this->data['pagination']['url_controller'] ?? '');
 
     echo "Páginas: ";
 

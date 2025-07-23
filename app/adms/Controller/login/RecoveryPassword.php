@@ -32,7 +32,7 @@ class RecoveryPassword
                     // $_SESSION['emailRecoveryPassword'] = $resultEmail['email'];
                     // var_dump($_SESSION);
                     $_SESSION['success'] = 'Email de Recuperação Enviado';
-                    header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
+                    header('Location:' . getenv('APP_DOMAIN') . '/login');
                     exit;
                 } else {
                     $this->data['error'] = ['error' => 'Usuário Não Encontrado'];

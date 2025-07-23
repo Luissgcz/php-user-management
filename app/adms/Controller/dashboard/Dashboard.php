@@ -60,7 +60,7 @@ class Dashboard
         }
 
         //Corrigido erro de Envios Multiplos
-        header("Location:" . $_ENV['APP_DOMAIN'] . '/dashboard/?with=' . $data['receiver_id']);
+        header("Location: " . getenv('APP_DOMAIN') . '/dashboard/?with=' . $data['receiver_id']);
         exit;
     }
 }

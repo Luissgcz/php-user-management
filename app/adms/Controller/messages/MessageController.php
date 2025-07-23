@@ -55,7 +55,7 @@ class MessageController
         }
 
         //Corrigido erro de Envios Multiplos
-        header("Location:" . $_ENV['APP_DOMAIN'] . '/message-controller/?with=' . $data['receiver_id']);
+        header("Location:" . getenv('APP_DOMAIN') . '/message-controller/?with=' . $data['receiver_id']);
         exit;
     }
 }
