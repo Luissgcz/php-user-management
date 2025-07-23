@@ -11,17 +11,13 @@ class RecoveryPasswordRepository extends DbConnection
 {
     public function validateEmailExists($email)
     {
-        //Query para Pegar os Registro do DB de um Usuário Especifico
         $sql = 'SELECT id,name,email,password,created_at,updated_at
                  FROM ads
                  WHERE email=:email';
-        //Preparar a Query
         $stmt = $this->getConnection()->prepare($sql);
-        //Executar a Query
         $stmt->execute([
             ':email' => $email
         ]);
-        //Retornar todos os resultados
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -30,7 +26,7 @@ class RecoveryPasswordRepository extends DbConnection
         try {
             $sql = 'UPDATE ads SET recovery_password= :recovery_password, validate_recovery_password= :validate_recovery_password WHERE email=:email';
             $stmt = $this->getConnection()->prepare($sql);
-            // $strToTime = date("Y-m-d H:i:s", $created_at);
+
             return $stmt->execute([
                 ':email' => $email,
                 ':recovery_password' => $keyRecovery,
@@ -44,36 +40,27 @@ class RecoveryPasswordRepository extends DbConnection
 
     public function validateResetPass($key)
     {
-        //Query para Pegar os Registro do DB de um Usuário Especifico
+
         $sql = 'SELECT *
                  FROM ads
                  WHERE recovery_password=:recovery_password';
-        //Preparar a Query
         $stmt = $this->getConnection()->prepare($sql);
-        //Executar a Query
         $stmt->execute([
-            // ':email' => $email,
             ':recovery_password' => $key
         ]);
-        //Retornar todos os resultados
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function alterPassword($recoveryPassword, $password)
     {
-        //Query para Pegar os Registro do DB de um Usuário Especifico
         $sql = 'UPDATE ads
                  SET password = :newPassword, updated_at = :updated_at
                  WHERE recovery_password=:recovery_password';
-        //Preparar a Query
         $stmt = $this->getConnection()->prepare($sql);
-        //Executar a Query
         return $stmt->execute([
             ':recovery_password' => $recoveryPassword,
             ':newPassword' => $password,
             ':updated_at' => date("Y-m-d H:i:s")
         ]);
-        //Retornar todos os resultados
-
     }
 }

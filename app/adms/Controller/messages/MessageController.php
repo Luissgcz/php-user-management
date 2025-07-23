@@ -9,7 +9,6 @@ class MessageController
 {
     private string|array|null  $data = null;
 
-    // Função para listar mensagens recebidas (GET)
     public function index(): void
     {
         $messageModel = new MessageRepository();
@@ -21,18 +20,15 @@ class MessageController
             $this->sendMessage($data);
         }
 
-        // Se estiver visualizando uma conversa com outro usuário (ex: ?with=3)
         $withUserId = filter_input(INPUT_GET, 'with', FILTER_VALIDATE_INT);
 
         if ($withUserId) {
-            // Carrega histórico de conversa entre os dois
             $this->data['conversation'] = $messageModel->getConversation($userId, $withUserId);
             $this->data['with_user_id'] = $withUserId;
             $this->data['messages'] = $messageModel->getInbox($userId);
             $loadView = new LoadViewService('adms/Views/dashboard/dashboard', $this->data);
             $loadView->loadView();
         } else {
-            // Se nenhum usuário for especificado, carrega apenas inbox (últimas recebidas)
             $this->data['messages'] = $messageModel->getInbox($userId);
             $loadView = new LoadViewService('adms/Views/dashboard/dashboard', $this->data);
             $loadView->loadView();
@@ -54,7 +50,6 @@ class MessageController
             $_SESSION['error'] = "Todos os campos são obrigatórios.";
         }
 
-        //Corrigido erro de Envios Multiplos
         header("Location:" . getenv('APP_DOMAIN') . '/message-controller/?with=' . $data['receiver_id']);
         exit;
     }

@@ -17,7 +17,6 @@ class DeleteUser
         $this->data['head'] = 'Deletar Usuário';
         $deleteUser = new UsersRepository();
 
-        // Trata AJAX POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
             $dataUpdate = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -29,8 +28,7 @@ class DeleteUser
                 } else {
                     $result = $deleteUser->deleteUser($id);
                 }
-
-
+                
                 if ($isAjax) {
                     header('Content-Type: application/json');
                     echo json_encode([
@@ -39,7 +37,6 @@ class DeleteUser
                     ]);
                     exit;
                 } else {
-                    // Envio normal (não-AJAX)
                     $_SESSION['success'] = $result ? 'Usuário Deletado com sucesso' : 'Erro ao Deletar Usuário';
                     header('Location:' . getenv('APP_DOMAIN') . '/list-users');
                     return;

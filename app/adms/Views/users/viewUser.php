@@ -32,7 +32,6 @@ if (!empty($this->data['user'])) {
                 </div>
 
                 <div class="card-body">
-                    <!-- Foto de Perfil -->
                     <div class="text-center mb-4">
                         <img src="<?php echo getenv('APP_DOMAIN'); ?>/storage/uploads/profile/<?php echo $image ?? 'default.png'; ?>"
                             alt="Foto de Perfil" class="rounded-circle img-thumbnail"
@@ -47,7 +46,6 @@ if (!empty($this->data['user'])) {
                         </form>
                     </div>
 
-                    <!-- Formulário de Edição -->
                     <form method="POST">
                         <input type="hidden" name="csfr_tokens" value="<?php echo CSFRHelper::generateCSFRToken('form_view_user') ?>">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -84,7 +82,6 @@ if (!empty($this->data['user'])) {
                         </div>
                     </form>
 
-                    <!-- Informações de sistema -->
                     <div class="mt-4">
                         <p><strong>Criado em:</strong> <?php echo date('d/m/Y H:i:s', strtotime($created_at)); ?></p>
                         <p><?php echo isset($updated_at) ? "<strong>Atualizado em: </strong>" . date('d/m/Y H:i:s', strtotime($updated_at)) : ''; ?></p>

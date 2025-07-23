@@ -16,7 +16,6 @@ class ResetPassword
         $this->key = $key;
         $this->data['head'] = 'Redefinir Senha | Sistema CRUD MVC';
 
-        //Primeiraa req vai ser GET então vai pular esse POST, depois vai chamar a view, sem resetar o CSFR token e ai vai validar corretamente
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->workFormData();
         }
@@ -56,12 +55,6 @@ class ResetPassword
         if (empty($this->data['error']) && CSFRHelper::validateCSFRToken('form_reset_password', $this->data['form']['csfr_tokens'])) {
             $alterPassword = new RecoveryPasswordRepository();
             $hashPassword = password_hash($this->data['form']['password'], PASSWORD_DEFAULT);
-
-            // if (!isset($_SESSION['emailRecoveryPassword'])) {
-            //     $_SESSION['error'] = 'Sessão expirada. Solicite uma nova recuperação de senha.';
-            //     header('Location:' . getenv('APP_DOMAIN') . '/login');
-            //     exit;
-            // }
 
             $result = $alterPassword->alterPassword($this->key, $hashPassword);
             if ($result) {

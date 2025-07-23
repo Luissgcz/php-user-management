@@ -25,13 +25,7 @@ class CreateUser
         $this->data['form'] = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($this->data['form']['csfr_tokens']) && CSFRHelper::validateCSFRToken('form_create_user', $this->data['form']['csfr_tokens'])) {
 
-            // $this->data['error'] = array_merge(
-            // ValidationUserService::validate($this->data['form']) ?? [],
-            // ValidationEmptyField::validateEmptyField($this->data['form']) ?? [],
-
-            //Validando Utilizando Biblioteca Rakit
             $this->data['error'] = ValidationUserRakitService::validateCreateUser($this->data['form'] ?? []);
-            // );
 
 
             if (empty($this->data['error'])) {

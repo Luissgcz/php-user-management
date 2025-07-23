@@ -54,7 +54,6 @@ class ValidationUserRakitService
         $errors = [];
         $validator = new Validator;
 
-        //Validador de Unique no Banco, passando o unique
         $validator->addValidator('unique', new UniqueRule());
 
 

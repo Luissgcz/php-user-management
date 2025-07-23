@@ -17,23 +17,19 @@ class UsersRepository extends DbConnection
     public function getAllUsers(int $page = 1, int $limitResults = 10)
     {
 
-        //Calcular o Registro Inicial
         $offSet = max(0, ($page - 1) * $limitResults);
-        // var_dump($offSet);
 
-        //Query para Pegar os Registro do DB
         $sql = 'SELECT id,name,email,password,created_at,updated_at,image,status
         FROM ads
         ORDER BY name
         LIMIT :limit OFFSET :offset';
-        //Preparar a Query
         $stmt = $this->getConnection()->prepare($sql);
-        // Usar bindValue para garantir que são inteiros
+
         $stmt->bindValue(':limit', $limitResults, PDO::PARAM_INT);
         $stmt->bindValue(':offset', $offSet, PDO::PARAM_INT);
-        //Executar a Query
+
         $stmt->execute();
-        //Retornar todos os resultados
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -47,17 +43,13 @@ class UsersRepository extends DbConnection
 
     public function getUser($id)
     {
-        //Query para Pegar os Registro do DB de um Usuário Especifico
         $sql = 'SELECT id,name,email,created_at,updated_at,image,phone,status
              FROM ads
              WHERE id=:id';
-        //Preparar a Query
         $stmt = $this->getConnection()->prepare($sql);
-        //Executar a Query
         $stmt->execute([
             'id' => $id
         ]);
-        //Retornar todos os resultados
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -84,12 +76,8 @@ class UsersRepository extends DbConnection
 
     public function updateImg($id, $pathImg)
     {
-        //Query para Pegar os Registro do DB de um Usuário Especifico
         $sql = 'UPDATE ads SET image=:image WHERE id=:id';
-
-        //Preparar a Query
         $stmt = $this->getConnection()->prepare($sql);
-        //Executar a Query
         return $stmt->execute([
             'id' => $id,
             'image' => $pathImg
@@ -99,17 +87,14 @@ class UsersRepository extends DbConnection
 
     public function getUserAdm($id)
     {
-        //Query para Pegar os Registro do DB de um Usuário Especifico
         $sql = 'SELECT *
              FROM ads
              WHERE id=:id';
-        //Preparar a Query
+
         $stmt = $this->getConnection()->prepare($sql);
-        //Executar a Query
         $stmt->execute([
             'id' => $id
         ]);
-        //Retornar todos os resultados
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 

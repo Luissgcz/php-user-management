@@ -14,7 +14,6 @@ class EditUser
     {
 
         $editUser = new UsersRepository();
-        // Tratando com AJAX
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dataUpdate = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
@@ -46,7 +45,6 @@ class EditUser
                 }
             }
 
-            // Se não for AJAX ou falhar a validação CSRF, retorne erro JSON também
             header('Content-Type: application/json');
             echo json_encode([
                 'success' => false,

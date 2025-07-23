@@ -11,10 +11,8 @@ if (($this->data['pagination']['last_page'] ?? false) && $this->data['pagination
 
     for ($i = 1; $i <= $totalPages; $i++) {
         if ($i == $currentPage) {
-            // Página atual sem link e destacada com colchetes
             echo " [{$i}] ";
         } else {
-            // Outras páginas com link
             echo " <a href='{$baseUrl}/{$i}'>{$i}</a> ";
         }
     }

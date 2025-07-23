@@ -21,7 +21,6 @@ class UniqueValueRepository extends DbConnection
             ':value' => $value
         ]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        // true for valid, false for invalid
         if (intval($data['count']) === 0) {
             return true;
         };

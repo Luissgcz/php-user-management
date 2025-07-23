@@ -32,13 +32,10 @@
     <div class="content-main">
         <?php include($this->view) ?>
     </div>
-    <!-- jQuery primeiro -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <!-- Bootstrap Bundle (JS + Popper) -->
     <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/navbar/bootstrap.bundle.min.js"></script>
 
-    <!-- Seus scripts -->
     <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/navbar/navbar.js"></script>
     <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/listUsers/modalAction.js"></script>
     <script src="<?php echo getenv('APP_DOMAIN'); ?>/public/adms/js/listUsers/filterUsers.js"></script>

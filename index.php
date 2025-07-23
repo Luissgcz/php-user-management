@@ -2,8 +2,8 @@
 
 use Routes\PageController;
 
-session_start(); // Inciar a Sessão
-ob_start(); //Buffer de Saida
+session_start(); 
+ob_start(); 
 
 require('./vendor/autoload.php');
 date_default_timezone_set('America/Sao_Paulo');

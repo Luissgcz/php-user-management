@@ -16,7 +16,6 @@ class FilterUsers extends DbConnection
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) ?? '';
             $status = filter_input(INPUT_POST, 'status', FILTER_DEFAULT) ?? '';
 
-            // Query básica com filtro dinâmico (melhore para prepared statements)
             $query = "SELECT * FROM ads WHERE 1=1 ";
             $params = [];
 

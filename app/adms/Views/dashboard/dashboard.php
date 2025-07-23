@@ -18,28 +18,21 @@ if (!empty($this->data['error'])) {
     }
 }
 
-
-
-
-// Se existirem mensagens...
 $lastMessages = [];
 
 
-//Conversa dos Usuários
+
 $allMessages = $this->data['conversation'] ?? [];
 
-//Barra Lateral das Ultimas Mensagens dos Usuário
+
 $usersMessages = $this->data['messages'] ?? [];
 
-// var_dump($this->data['messages']);
 foreach ($allMessages as $msg) {
     $senderId = $msg['sender_id'];
     if (!isset($lastMessages[$senderId]) && $senderId !== $loggedUserId) {
         $lastMessages[$senderId] = $msg;
     }
 }
-
-// var_dump($usersMessages);
 
 foreach ($usersMessages as $msg) {
     $senderId = $msg['sender_id'];
@@ -55,11 +48,6 @@ foreach ($usersMessages as $msg) {
 }
 
 
-
-// var_dump($lastMessages);
-
-
-// Pegando mensagens com um usuário específico (se estiver em uma conversa)
 $chatWithUserId = $_GET['with'] ?? null;
 $conversation = [];
 
@@ -72,7 +60,6 @@ if ($chatWithUserId) {
             $conversation[] = $msg;
         }
     }
-    // var_dump($conversation);
 }
 ?>
 
@@ -83,7 +70,7 @@ if ($chatWithUserId) {
                 <div class="card" id="chat3" style="border-radius: 15px">
                     <div class="card-body">
                         <div class="row h-100">
-                            <!-- Lista de usuários -->
+                            <!-- Lista de Usuários -->
                             <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
                                 <div class="p-3 h-100 d-flex flex-column">
                                     <div class="input-group rounded mb-3">
@@ -91,7 +78,7 @@ if ($chatWithUserId) {
 
                                         <table class="table table-striped">
                                             <tbody id="userTableFilter">
-                                                <!-- Ajax insere <tr> aqui -->
+                                                <!-- Ajax REQ -->
                                             </tbody>
                                         </table>
                                         <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
@@ -103,8 +90,6 @@ if ($chatWithUserId) {
                                             <?php foreach ($lastMessages as $msg):
                                                 $userId = ($loggedUserId === $msg['sender_id']) ? $msg['receiver_id'] : $msg['sender_id'];
                                                 $name = ($loggedUserName === $msg['sender_name']) ? $msg['receiver_name'] : $msg['sender_name'];
-                                                //Formatando a Mensagem lateral paraa ficar Pequena
-                                                // echo $msg['message'];
                                                 $shortMsg = substr($msg['message'], 0, 30) . (strlen($msg['message']) > 30 ? '...' : '');
                                                 $time =  date('H:i', strtotime($msg['created_at']));
                                                 $image = ($loggedUserId === $msg['sender_id']) ? $msg['receiver_image'] : $msg['sender_image'];
@@ -173,7 +158,6 @@ if ($chatWithUserId) {
                                     <?php endif; ?>
                                 </div>
 
-                                <!-- Rodapé -->
                                 <form method="POST" class="chat-footer d-flex align-items-center gap-2 mt-3">
                                     <input type="hidden" name="receiver_id" value="<?= $chatWithUserId ?>">
                                     <img src="<?php echo getenv('APP_DOMAIN'); ?>/storage/uploads/profile/<?php echo $this->data['userLogin']['image'] ?? 'default.png'; ?>" class="chat-avatar" />

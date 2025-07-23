@@ -4,14 +4,12 @@ namespace App\adms\Views\login;
 
 use App\adms\Helpers\CSFRHelper;
 
-// Exibe mensagens de erro
 if (isset($this->data['error'])) {
     foreach ($this->data['error'] as $value) {
         echo "<div class='alert alert-danger'>{$value}</div>";
     }
 }
 
-// Mensagens de sessão
 if (isset($_SESSION['success'])) {
     echo "<div class='alert alert-success'>{$_SESSION['success']}</div>";
     unset($_SESSION['success']);
