@@ -19,7 +19,7 @@ class MessageRepository extends DbConnection
         ]);
     }
 
-    public function getInbox(int $userId): array
+    public function getInbox($userId): array
     {
         $query = "SELECT sub.*
 FROM (

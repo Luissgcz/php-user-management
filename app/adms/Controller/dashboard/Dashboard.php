@@ -15,7 +15,7 @@ class Dashboard
         $messageModel = new MessageRepository();
         $userId = $_SESSION['userId'];
         $userLogin = new UsersRepository();
-        $this->data['userLogin'] =  $userLogin->getUser($userId);
+        $this->data['userLogin'] = $userLogin->getUser($userId);
 
 
         $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -26,7 +26,6 @@ class Dashboard
         $withUserId = filter_input(INPUT_GET, 'with', FILTER_VALIDATE_INT);
 
         if ($withUserId) {
-         
             $this->data['conversation'] = $messageModel->getConversation($userId, $withUserId);
             $this->data['with_user_id'] = $withUserId;
             $this->data['messages'] = $messageModel->getInbox($userId);
