@@ -8,7 +8,6 @@ if (isset($this->data['error'])) {
     }
 }
 
-// Mensagens de sessão
 if (isset($_SESSION['success'])) {
     echo "<div class='alert alert-success'>{$_SESSION['success']}</div>";
     unset($_SESSION['success']);
