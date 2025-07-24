@@ -12,7 +12,7 @@ class LoadPageAdm
     /** @var string $urlParameter Recebe da URL o Parametro */
     private string $urlParameter;
     /** @var array $listPhPublic Recebe a lista de paginas publicas */
-    private array $listPgPublic = ["Login", "Error403", "NewLogin", "RecoveryPassword", "ResetPassword"];
+    private array $listPgPublic = ["Login", "Error403", "NewLogin", "RecoveryPassword", "ResetPassword", "Css"];
     /** @var array $listPgPrivate Recebe a lista de paginas privadas */
     private array $listPgPrivate = ["Dashboard", "ListUsers", "ViewUser", "CreateUser", "EditUser", "DeleteUser", "EditPassword", "Logout", "FilterUsers", "FilterUsersForSendMsg", "MessageController"];
     /** @var array $listDirectory Recebe a Lista de Diretorios com a Controller */
@@ -40,15 +40,12 @@ class LoadPageAdm
 
         $this->urlParameter = $urlParameter;
 
-        // if (!$this->checkPageExists()) {
-
-        //     //Chamar o Método para Salvar o Log
-        //     GenerateLog::generateLog("error", "Pagina Não Encontrada", ['pagina' => $this->urlController, 'parametro' => $this->urlParameter]);
-        //     $_SESSION['error'] = "Acesso não Autorizado";
-        //     //Meus Arquivos Estaticos do Head estão passando pelo roteamento ai ta dando erro aqui, deixar comentando para resolver posteriormente
-        //     header('Location:' . getenv('APP_DOMAIN') . '/error403'); ##Aqui ta o Problema dessa Merda, antes tava login
-        //     exit;
-        // }
+        if (!$this->checkPageExists()) {
+            GenerateLog::generateLog("error", "Pagina Não Encontrada", ['pagina' => $this->urlController, 'parametro' => $this->urlParameter]);
+            $_SESSION['error'] = "Acesso não Autorizado";
+            header('Location:' . getenv('APP_DOMAIN') . '/error403');
+            exit;
+        }
 
 
         if (!$this->checkControllerExists()) {
