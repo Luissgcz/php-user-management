@@ -19,8 +19,8 @@ services:
       MYSQL_DATABASE: dblocal
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
-    ports:
-      - "3307:3306"
+    expose:
+      - "3307"
     volumes:
       - dbdata:/var/lib/mysql
 
