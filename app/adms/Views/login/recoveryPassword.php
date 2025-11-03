@@ -47,7 +47,7 @@ if (isset($_SESSION['error'])) {
 
 
                 <div class="text-center mt-3">
-                    <a href="<?php echo getenv('APP_DOMAIN'); ?>/login" class="text-decoration-none">Voltar para o login</a>
+                    <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/login" class="text-decoration-none">Voltar para o login</a>
                 </div>
             </form>
         </div>

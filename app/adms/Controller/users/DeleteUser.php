@@ -28,7 +28,7 @@ class DeleteUser
                 } else {
                     $result = $deleteUser->deleteUser($id);
                 }
-                
+
                 if ($isAjax) {
                     header('Content-Type: application/json');
                     echo json_encode([
@@ -38,7 +38,7 @@ class DeleteUser
                     exit;
                 } else {
                     $_SESSION['success'] = $result ? 'Usuário Deletado com sucesso' : 'Erro ao Deletar Usuário';
-                    header('Location:' . getenv('APP_DOMAIN') . '/list-users');
+                    header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
                     return;
                 }
             } else {
@@ -51,14 +51,14 @@ class DeleteUser
                     exit;
                 } else {
                     $_SESSION['error'] = 'Autenticação inválida';
-                    header('Location:' . getenv('APP_DOMAIN') . '/list-users');
+                    header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
                     return;
                 }
             }
         }
 
 
-        header('Location:' . getenv('APP_DOMAIN') . '/Error403');
+        header('Location:' . $_ENV['APP_DOMAIN'] . '/Error403');
         exit;
     }
 }

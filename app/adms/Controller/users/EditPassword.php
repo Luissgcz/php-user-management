@@ -30,27 +30,27 @@ class EditPassword
             if (empty($this->data['error'])) {
                 if (isset($this->data['form']) && CSFRHelper::validateCSFRToken('form_update_password', $this->data['form']['csfr_tokens'])) {
 
-               
+
                     if (password_verify($this->data['form']['passwordCurrent'], $passwordHash)) {
                         $hashPassword = password_hash($this->data['form']['newPassword'], PASSWORD_DEFAULT);
 
                         if ($editPassword->updatePassword($id, $hashPassword, time())) {
                             $_SESSION['success'] = 'Senha alterada com sucesso.';
-                            header('Location:' . getenv('APP_DOMAIN') . '/list-users');
+                            header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
                             exit;
                         } else {
                             $_SESSION['error'] = 'Erro ao alterar a senha do usuário.';
-                            header('Location:' . getenv('APP_DOMAIN') . '/edit-password');
+                            header('Location:' . $_ENV['APP_DOMAIN'] . '/edit-password');
                             exit;
                         }
                     } else {
                         $_SESSION['error'] = 'Senha atual incorreta';
-                        header('Location:' . getenv('APP_DOMAIN') . '/edit-password');
+                        header('Location:' . $_ENV['APP_DOMAIN'] . '/edit-password');
                         exit;
                     }
                 } else {
                     $_SESSION['error'] = 'Acesso inválido ao tentar alterar a senha.';
-                    header('Location:' . getenv('APP_DOMAIN') . '/edit-password');
+                    header('Location:' . $_ENV['APP_DOMAIN'] . '/edit-password');
                     exit;
                 }
             }

@@ -25,7 +25,7 @@ class Login
                 $result = $serviceDv->authUser($this->data['form']['email'], $this->data['form']['password']);
 
                 if ($result) {
-                    header('Location:' . getenv('APP_DOMAIN')  . '/dashboard');
+                    header('Location:' . $_ENV['APP_DOMAIN']  . '/dashboard');
                     exit;
                 } else {
                     $_SESSION['error'] = 'Usuário ou Senha Incorreta';

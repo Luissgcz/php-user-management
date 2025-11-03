@@ -34,7 +34,7 @@ class CreateUser
 
                 if ($result) {
                     $_SESSION['success'] = 'Usuário Cadastrado com successo';
-                    header('Location:' . getenv('APP_DOMAIN') . '/list-users');
+                    header('Location:' . $_ENV['APP_DOMAIN'] . '/list-users');
                     exit;
                 }
             }

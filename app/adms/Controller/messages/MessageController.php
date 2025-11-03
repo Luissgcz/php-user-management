@@ -50,7 +50,7 @@ class MessageController
             $_SESSION['error'] = "Todos os campos são obrigatórios.";
         }
 
-        header("Location:" . getenv('APP_DOMAIN') . '/message-controller/?with=' . $data['receiver_id']);
+        header("Location:" . $_ENV['APP_DOMAIN'] . '/message-controller/?with=' . $data['receiver_id']);
         exit;
     }
 }

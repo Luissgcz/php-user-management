@@ -30,7 +30,7 @@ class RecoveryPassword
                     $serviceRepository->insertDataRecovery($this->data['form']['email'], $key, date("Y-m-d H:i:s", strtotime("+30 minutes")));
                     SendEmail::SendEmailRecoveryPassword($key, $this->data['form']['email'], $resultEmail['name']);
                     $_SESSION['success'] = 'Email de Recuperação Enviado';
-                    header('Location:' . getenv('APP_DOMAIN') . '/login');
+                    header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
                     exit;
                 } else {
                     $this->data['error'] = ['error' => 'Usuário Não Encontrado'];

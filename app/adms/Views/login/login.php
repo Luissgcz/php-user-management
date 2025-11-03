@@ -66,8 +66,8 @@ if (isset($_SESSION['error'])) {
                                     </label>
 
                                     <div class="ml-auto d-flex">
-                                        <a href="<?php echo getenv('APP_DOMAIN'); ?>/recovery-password" class="forgot-pass me-3">Esqueceu a Senha</a>
-                                        <a href="<?php echo getenv('APP_DOMAIN'); ?>/new-login" class="register-link">Cadastrar</a>
+                                        <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/recovery-password" class="forgot-pass me-3">Esqueceu a Senha</a>
+                                        <a href="<?php echo $_ENV['APP_DOMAIN']; ?>/new-login" class="register-link">Cadastrar</a>
                                     </div>
                                 </div>
 

@@ -27,7 +27,7 @@ class NewLogin
                 $result = $newUser->newUser($this->data['form']['name'], $this->data['form']['email'], password_hash($this->data['form']['password'], PASSWORD_DEFAULT), time());
                 if ($result) {
                     $_SESSION['success'] = 'Usuário Cadastrado com successo';
-                    header('Location:' . getenv('APP_DOMAIN') . '/login');
+                    header('Location:' . $_ENV['APP_DOMAIN'] . '/login');
                     exit;
                 }
             }

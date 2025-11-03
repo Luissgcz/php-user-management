@@ -1,4 +1,4 @@
-<a href="<?php echo getenv('APP_DOMAIN'); ?>/create-user" class="btn btn-success">Criar Usuário</a>
+<a href="<?php echo $_ENV['APP_DOMAIN']; ?>/create-user" class="btn btn-success">Criar Usuário</a>
 
 <form id="filterForm" class="mb-3">
     <div class="row g-2">

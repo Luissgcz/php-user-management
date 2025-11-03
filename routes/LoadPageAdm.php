@@ -46,7 +46,7 @@ class LoadPageAdm
         //     GenerateLog::generateLog("error", "Pagina Não Encontrada", ['pagina' => $this->urlController, 'parametro' => $this->urlParameter]);
         //     $_SESSION['error'] = "Acesso não Autorizado";
         //     //Meus Arquivos Estaticos do Head estão passando pelo roteamento ai ta dando erro aqui, deixar comentando para resolver posteriormente
-        //     header('Location:' . getenv('APP_DOMAIN') . '/error403'); ##Aqui ta o Problema dessa Merda, antes tava login
+        //     header('Location:' . $_ENV['APP_DOMAIN'] . '/error403'); ##Aqui ta o Problema dessa Merda, antes tava login
         //     exit;
         // }
 
