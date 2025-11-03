@@ -12,7 +12,7 @@ services:
 
   db:
     image: mysql:8.0
-    container_name: banco_db_local
+    container_name: mysql_app
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin123#
