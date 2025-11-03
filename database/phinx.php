@@ -16,7 +16,7 @@ return [
         'default_migration_table' => 'phinxlog',
         'default_environment' => $_ENV['APP_ENV'] ?? 'development',
         'production' => [
-            'adapter' => 'mysql_app',
+            'adapter' => 'mysql',
             'host' => $_ENV['DB_HOST'],
             'name' => $_ENV['DB_NAME'],
             'user' => $_ENV['DB_USER'],
@@ -25,7 +25,7 @@ return [
             'charset' => 'utf8',
         ],
         'development' => [
-            'adapter' => 'mysql_app',
+            'adapter' => 'mysql',
             'host' => $_ENV['DB_HOST'],
             'name' => $_ENV['DB_NAME'],
             'user' => $_ENV['DB_USER'],
@@ -34,7 +34,7 @@ return [
             'charset' => 'utf8',
         ],
         'testing' => [
-            'adapter' => 'mysql_app',
+            'adapter' => 'mysql',
             'host' => $_ENV['DB_HOST'],
             'name' => $_ENV['DB_NAME'],
             'user' => $_ENV['DB_USER'],
