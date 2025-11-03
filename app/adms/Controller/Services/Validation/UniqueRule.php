@@ -16,17 +16,17 @@ class UniqueRule extends Rule
     {
         try {
             $this->requireParameters(['table', 'column']);
-            
+
             $column = $this->parameter('column');
             $table = $this->parameter('table');
 
             $verifyUniqueData = new UniqueValueRepository();
-            if ($verifyUniqueData->verifyUniqueData($table, $column, $value)) {
-                return true;
-            }
-            return false;
+            $exists = $verifyUniqueData->verifyUniqueData($table, $column, $value);
+
+            // Se existir no banco → NÃO é único → retorna false
+            return !$exists;
         } catch (Exception $err) {
-            GenerateLog::generateLog('error', 'Usuário não cadastrado', ["error" => $err->getMessage()]);
+            GenerateLog::generateLog('error', 'Erro na validação Unique', ["error" => $err->getMessage()]);
             return false;
         }
     }
