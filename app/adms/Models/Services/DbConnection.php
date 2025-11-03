@@ -3,6 +3,7 @@
 namespace App\adms\Models\Services;
 
 use App\adms\Helpers\GenerateLog;
+use Dotenv\Dotenv;
 use Exception;
 use PDO;
 
@@ -13,39 +14,54 @@ abstract class DbConnection
     private string $pass;
     private string $host;
     private int $port;
-    private ?object $statusConnection = null;
+    private ?PDO $statusConnection = null;
 
     public function __construct()
     {
-        $this->dbName = getenv('DB_NAME');
-        $this->user = getenv('DB_USER');
-        $this->pass = getenv('DB_PASS');
-        $this->host = getenv('DB_HOST');
-        $this->port = getenv('DB_PORT');
+        if (!isset($_ENV['DB_HOST'])) {
+            $dotenv = Dotenv::createImmutable(dirname(__DIR__, 3));
+            $dotenv->load();
+        }
+
+        $this->dbName = $_ENV['DB_NAME'] ?? '';
+        $this->user   = $_ENV['DB_USER'] ?? '';
+        $this->pass   = $_ENV['DB_PASS'] ?? '';
+        $this->host   = $_ENV['DB_HOST'] ?? '';
+        $this->port   = (int) ($_ENV['DB_PORT'] ?? 3306);
     }
 
-    public function getConnection()
+    public function getConnection(): PDO
     {
         try {
-            if ($this->statusConnection) {
-                return $this->statusConnection;
-            } else {
-                $this->statusConnection = new PDO("mysql:host=$this->host;dbname=$this->dbName;port=$this->port", $this->user, $this->pass);
-                return $this->statusConnection;
+            if (!$this->statusConnection) {
+                $dsn = "mysql:host={$this->host};dbname={$this->dbName};port={$this->port};charset=utf8";
+                $this->statusConnection = new PDO($dsn, $this->user, $this->pass, [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                ]);
             }
+
+            return $this->statusConnection;
         } catch (Exception $err) {
+
             var_dump([
-                'DB_HOST' => getenv('DB_HOST'),
-                'DB_NAME' => getenv('DB_NAME'),
-                'DB_USER' => getenv('DB_USER'),
-                'DB_PASS' => getenv('DB_PASS'),
-                'DB_PORT' => getenv('DB_PORT'),
-                'DB_CONNECTION' => $this->statusConnection,
-                'error_message' => $err->getMessage(),
+                'DB_HOST' => $this->host,
+                'DB_NAME' => $this->dbName,
+                'DB_USER' => $this->user,
+                'DB_PASS' => $this->pass,
+                'DB_PORT' => $this->port,
+                'error_message' => $err->getMessage()
             ]);
             exit;
-            GenerateLog::generateLog('alert', 'Erro ao Se Conectar com o Banco de Dados', ["error" => $err->getMessage()]);
+
+            GenerateLog::generateLog(
+                'alert',
+                'Erro ao Se Conectar com o Banco de Dados',
+                ["error" => $err->getMessage()]
+            );
+
             echo "Erro ao Se Conectar no Banco de Dados";
+            exit;
         }
     }
 }
