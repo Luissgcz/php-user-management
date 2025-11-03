@@ -2,7 +2,10 @@
 
 require(__DIR__ . '/../vendor/autoload.php');
 
-date_default_timezone_set(getenv('APP_TIMEZONE'));
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
+date_default_timezone_set($_ENV['APP_TIMEZONE'] ?? 'UTC');
 
 return [
     'paths' => [
@@ -11,32 +14,32 @@ return [
     ],
     'environments' => [
         'default_migration_table' => 'phinxlog',
-        'default_environment' => getenv('APP_ENV'),
+        'default_environment' => $_ENV['APP_ENV'] ?? 'development',
         'production' => [
             'adapter' => 'mysql',
-            'host' => getenv('DB_HOST_PHINX'),
-            'name' => getenv('DB_NAME_PHINX'),
-            'user' => getenv('DB_USER_PHINX'),
-            'pass' => getenv('DB_PASS_PHINX'),
-            'port' => getenv('DB_PORT_PHINX'),
+            'host' => $_ENV['DB_HOST'],
+            'name' => $_ENV['DB_NAME'],
+            'user' => $_ENV['DB_USER'],
+            'pass' => $_ENV['DB_PASS'],
+            'port' => $_ENV['DB_PORT'],
             'charset' => 'utf8',
         ],
         'development' => [
             'adapter' => 'mysql',
-            'host' => getenv('DB_HOST_PHINX'),
-            'name' => getenv('DB_NAME_PHINX'),
-            'user' => getenv('DB_USER_PHINX'),
-            'pass' => getenv('DB_PASS_PHINX'),
-            'port' => getenv('DB_PORT_PHINX'),
+            'host' => $_ENV['DB_HOST'],
+            'name' => $_ENV['DB_NAME'],
+            'user' => $_ENV['DB_USER'],
+            'pass' => $_ENV['DB_PASS'],
+            'port' => $_ENV['DB_PORT'],
             'charset' => 'utf8',
         ],
         'testing' => [
             'adapter' => 'mysql',
-            'host' => getenv('DB_HOST_PHINX'),
-            'name' => getenv('DB_NAME_PHINX'),
-            'user' => getenv('DB_USER_PHINX'),
-            'pass' => getenv('DB_PASS_PHINX'),
-            'port' => getenv('DB_PORT_PHINX'),
+            'host' => $_ENV['DB_HOST'],
+            'name' => $_ENV['DB_NAME'],
+            'user' => $_ENV['DB_USER'],
+            'pass' => $_ENV['DB_PASS'],
+            'port' => $_ENV['DB_PORT'],
             'charset' => 'utf8',
         ],
     ],
