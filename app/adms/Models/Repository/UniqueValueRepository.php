@@ -16,11 +16,14 @@ class UniqueValueRepository extends DbConnection
     {
 
         $stmt = $this->getConnection()->prepare("select count(*) as count from `{$table}` where `{$column}` = :value");
+
         $stmt->bindParam(':value', $value);
         $stmt->execute([
             ':value' => $value
         ]);
+
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
         if (intval($data['count']) === 0) {
             return true;
         };

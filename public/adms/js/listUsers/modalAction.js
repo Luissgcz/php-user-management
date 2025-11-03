@@ -25,7 +25,7 @@ $(document).on("submit", "#formEditUser", function (event) {
   const userId = form.find("#user_id").val();
 
   $.ajax({
-    url: ` https://php-user-management-production.up.railway.app/edit-user/${userId}`,
+    url: ` http://31.97.163.121:8081/edit-user/${userId}`,
     method: "POST",
     data: formData,
     dataType: "json",
@@ -65,7 +65,7 @@ $(document).on("submit", "#formDeleteUser", function (event) {
   const userId = form.find("#user_id").val();
 
   $.ajax({
-    url: ` https://php-user-management-production.up.railway.app/delete-user/${userId}`,
+    url: ` http://31.97.163.121:8081/delete-user/${userId}`,
     method: "POST",
     data: formData,
     dataType: "json",

@@ -16,7 +16,9 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 COPY . .
 
 RUN mkdir -p /var/www/html/logs \
-    && chown -R www-data:www-data /var/www/html
+    && chown -R www-data:www-data /var/www/html \
+    && chown -R www-data:www-data /var/www/html/logs \
+    && chmod -R 775 /var/www/html/logs
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

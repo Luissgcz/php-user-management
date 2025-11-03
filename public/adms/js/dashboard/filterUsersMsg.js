@@ -8,7 +8,7 @@ $(document).ready(function () {
     }
 
     $.ajax({
-      url: "https://php-user-management-production.up.railway.app/filter-users-for-send-msg",
+      url: "http://31.97.163.121:8081/filter-users-for-send-msg",
       method: "GET",
       data: { search: value },
       success: function (res) {

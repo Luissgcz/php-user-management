@@ -23,8 +23,7 @@ class UniqueRule extends Rule
             $verifyUniqueData = new UniqueValueRepository();
             $exists = $verifyUniqueData->verifyUniqueData($table, $column, $value);
 
-            // Se existir no banco → NÃO é único → retorna false
-            return !$exists;
+            return $exists;
         } catch (Exception $err) {
             GenerateLog::generateLog('error', 'Erro na validação Unique', ["error" => $err->getMessage()]);
             return false;

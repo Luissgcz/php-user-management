@@ -4,7 +4,7 @@ $(document).on("submit", "#filterForm", function (event) {
   const formData = $(this).serialize();
 
   $.ajax({
-    url: "https://php-user-management-production.up.railway.app/filter-users",
+    url: "http://31.97.163.121:8081/filter-users",
     method: "POST",
     data: formData,
     success: function (res) {
